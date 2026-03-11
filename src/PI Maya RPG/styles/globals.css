@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* CORES PRIMÁRIAS */
+  --color-primary-teal: #4FC3C8;
+  --color-primary-coral: #E8756A;
+
+  /* CORES SECUNDÁRIAS */
+  --color-secondary-beige: #D4B896;
+  --color-secondary-brown: #8B5E3C;
+  --color-secondary-teal-dark: #1B6B7B;
+
+  /* NEUTROS */
+  --color-white: #FFFFFF;
+  --color-off-white: #F8F6F3;
+  --color-dark: #1A1A1A;
+  --color-gray-soft: #6B7280;
+}
+
+@layer base {
+  html {
+    @apply antialiased;
+  }
+  body {
+    @apply bg-maya-off-white text-maya-dark font-roboto;
+  }
+}
+
+/* Focus visível para acessibilidade */
+@layer utilities {
+  .focus-maya {
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-maya-teal focus-visible:ring-offset-2;
+  }
+}

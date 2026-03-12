@@ -1,4 +1,15 @@
-# Gradle files
+# ── Node.js ─────────────────────────────────
+node_modules/
+dist/
+.env
+.env.local
+.env.*.local
+
+# ── Next.js ─────────────────────────────────
+.next/
+out/
+
+# ── Gradle files ────────────────────────────
 .gradle/
 build/
 

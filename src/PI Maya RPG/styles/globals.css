@@ -4,19 +4,19 @@
 
 :root {
   /* CORES PRIMÁRIAS */
-  --color-primary-teal: #4FC3C8;
-  --color-primary-coral: #E8756A;
+  --color-primary-teal: #7FBBD0;
+  --color-primary-coral: #B16850;
 
   /* CORES SECUNDÁRIAS */
-  --color-secondary-beige: #D4B896;
-  --color-secondary-brown: #8B5E3C;
-  --color-secondary-teal-dark: #1B6B7B;
+  --color-secondary-beige: #FDF1E0;
+  --color-secondary-brown: #8A4E3B;
+  --color-secondary-teal-dark: #165979;
 
   /* NEUTROS */
   --color-white: #FFFFFF;
-  --color-off-white: #F8F6F3;
-  --color-dark: #1A1A1A;
-  --color-gray-soft: #6B7280;
+  --color-off-white: #FFFFFF; /* Modificado para refletir um estilo mais claro */
+  --color-dark: #333333;
+  --color-gray-soft: #949494;
 }
 
 @layer base {

@@ -1,6 +1,6 @@
 'use client';
 
-import { Slot } from '@radix-ui/react-slot';
+import { Slot, Slottable } from '@radix-ui/react-slot';
 import { forwardRef, type ButtonHTMLAttributes } from 'react';
 import { cn } from '@/lib/utils';
 
@@ -41,7 +41,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {loading && (
           <div className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
         )}
-        {children}
+        <Slottable>{children}</Slottable>
       </Component>
     );
   }

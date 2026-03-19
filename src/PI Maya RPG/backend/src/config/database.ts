@@ -3,11 +3,15 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+const connectionString = process.env.DATABASE_URL || 'postgresql://postgres:postgres@localhost:5432/maya_rpg';
+const isCloud = connectionString.includes('neon.tech') || connectionString.includes('supabase');
+
 export const pool = new Pool({
-  connectionString: process.env.DATABASE_URL || 'postgresql://postgres:postgres@localhost:5432/maya_rpg',
+  connectionString,
+  ssl: isCloud ? { rejectUnauthorized: false } : undefined,
   max: 20,
   idleTimeoutMillis: 30_000,
-  connectionTimeoutMillis: 5_000,
+  connectionTimeoutMillis: 30_000,
 });
 
 pool.on('error', (err) => {

@@ -13,12 +13,12 @@ A base de dados completa simulada com os registros dos pacientes está disponív
 | Nome da Variável | Tipo | Subtipo | Descrição no Sistema |
 | :--- | :--- | :--- | :--- |
 | **Status do Paciente** | Qualitativa | Nominal | Indica se o paciente está "Ativo" ou "Inativo". |
-| **Grau&nbsp;de&nbsp;Alteração&nbsp;Postural** | Qualitativa | Ordinal | Classifica o resultado da avaliação funcional (Leve, Moderado, Grave). |
+| **Grau de Alteração Postural** | Qualitativa | Ordinal | Classifica o resultado da avaliação funcional (Leve, Moderado, Grave). |
 | **Nível de Dor** | Quantitativa | Discreta | Nota de 0 a 10 registrada pelo paciente no aplicativo. |
 | **Número de Faltas** | Quantitativa | Discreta | Contagem de sessões perdidas. |
 | **Idade do Paciente** | Quantitativa | Discreta | Idade em anos para perfil demográfico. |
 | **Sessões Realizadas** | Quantitativa | Discreta | Soma das sessões concluídas. |
-| **Tempo&nbsp;de&nbsp;Execução&nbsp;(Min)** | Quantitativa | Contínua | Tempo (minutos) para concluir o plano em casa. |
+| **Tempo de Execução (Min)** | Quantitativa | Contínua | Tempo (minutos) para concluir o plano em casa. |
 | **Taxa de Adesão (%)** | Quantitativa | Contínua | Porcentagem do plano prescrito cumprido. |
 
 ---
@@ -27,7 +27,18 @@ A base de dados completa simulada com os registros dos pacientes está disponív
 
 Os cálculos foram realizados utilizando software de planilhas eletrônicas (Google Sheets/Excel). 
 
-> **📌 Observação Estatística:** Não se calcula Média ou Percentil para variáveis *Qualitativas* (Status do Paciente e Grau de Alteração Postural). Para essas, a medida central correta é a Moda. Portanto, as fórmulas abaixo foram aplicadas exclusivamente às variáveis *Quantitativas*.
+### 2.1 Variáveis Qualitativas — Moda
+
+> **📌 Nota Metodológica:** Para variáveis *Qualitativas* (Status do Paciente e Grau de Alteração Postural), não é aplicável o cálculo de Média ou Percentil. A medida de tendência central correta para esses casos é a **Moda**, que indica a categoria de maior frequência na amostra.
+
+| Variável Qualitativa | Moda (Categoria mais frequente) | Interpretação |
+| :--- | :--- | :--- |
+| **Status do Paciente** | Ativo | A maioria dos pacientes registrados está em tratamento ativo na clínica. |
+| **Grau de Alteração Postural** | Moderado | O grau de comprometimento postural mais comum entre os pacientes é o moderado, indicando que a clínica atende predominantemente casos intermediários. |
+
+### 2.2 Variáveis Quantitativas — Média e 95º Percentil
+
+> **📌 Nota sobre a escolha da Média:** Para todas as variáveis quantitativas foi utilizada a **Média Aritmética** como medida de tendência central. Essa escolha é adequada para uma análise exploratória inicial, pois permite uma leitura direta do valor central da distribuição. Ressalta-se que, em variáveis com possível assimetria — como **Nível de Dor** e **Número de Faltas** —, a **Mediana** poderia ser uma alternativa mais robusta a outliers; no entanto, a média aritmética foi mantida por ser suficiente ao objetivo descritivo desta entrega.
 
 **Fórmulas Aplicadas:**
 * **Média Aritmética:** `=MÉDIA(intervalo)`
@@ -42,13 +53,15 @@ Os cálculos foram realizados utilizando software de planilhas eletrônicas (Goo
 | **Idade do Paciente** | 39,2 | 60,5 | 95% do público atendido pela Dra. Maya tem até 60,5 anos de idade. |
 | **Sessões Realizadas** | 9,8 | 19,5 | 95% completaram até 19,5 sessões, sugerindo que este é o "teto" comum de duração dos tratamentos. |
 | **Tempo de Execução** | 15,2 | 24,5 | 95% levam até 24,5 min para concluir o plano, validando que o volume de exercícios não está excessivo. |
-| **Taxa de Adesão** | 74,8% | 99,0% | Reflete que, na grande maioria (95%), a adesão chega a 99%. Apenas os 5% mais engajados atingem 100%. |
+| **Taxa de Adesão** | 74,8% | 99,0% | 95% dos pacientes apresentam taxa de adesão de até 99%, indicando alto engajamento geral. Somente os 5% restantes ultrapassam essa marca, chegando próximos ou iguais a 100% de cumprimento do plano prescrito. |
 
 🔗 **[Acessar Comprovação dos Cálculos (Print do Excel no Drive)](https://drive.google.com/file/d/1h8MsZ_2hse47DKZPne4WGyFeLWyLkglX/view?usp=drive_link)**
 
 ---
 
 ## 3. Visualização de Dados (Gráficos)
+
+> **📌 Critério de seleção:** Foi elaborado um gráfico representativo para cada **tipo** de variável presente no sistema, evitando redundância visual. Os quatro tipos cobertos são: Qualitativa Nominal, Qualitativa Ordinal, Quantitativa Discreta e Quantitativa Contínua.
 
 ### A. Status do Paciente (Qualitativa Nominal)
 *Gráfico mais adequado: Setores (Pizza)*
@@ -69,7 +82,6 @@ Os cálculos foram realizados utilizando software de planilhas eletrônicas (Goo
 *Gráfico mais adequado: Histograma (Agrupamento em faixas)*
 <img width="1652" height="993" alt="Imagem4" src="https://github.com/user-attachments/assets/1049a34c-cd91-45d6-9d56-b33160bcb0c3" />
 
- 
 ---
 
 ## 4. Objetivo e Conclusão

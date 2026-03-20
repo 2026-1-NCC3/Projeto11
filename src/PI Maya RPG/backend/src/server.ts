@@ -56,4 +56,5 @@ start().catch((err) => {
   process.exit(1);
 });
 
+// Forçando redeploy no Render (trigger)
 export default app;

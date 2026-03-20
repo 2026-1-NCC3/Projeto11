@@ -6,7 +6,7 @@
 -- ============================================================
 
 -- Hash bcrypt de '123456' (gerado com cost 10)
--- $2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy
+-- $2a$10$nP3ZzoUEURZpu4QhKvHYWOkJeL/fJDNs6Oj5RlvWC4vFbHlW83s62
 
 -- ============================================================
 -- USUÁRIOS

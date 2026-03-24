@@ -8,6 +8,7 @@ import {
   Alert,
   ActivityIndicator,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useAuth } from '../contexts/AuthContext';
 import { listarPrescricoes, registrarCheckin } from '../api/client';
 import type { Prescricao } from '../types';
@@ -89,7 +90,7 @@ export default function CheckinScreen() {
   if (loading) return <LoadingSpinner />;
 
   return (
-    <View style={{ flex: 1, backgroundColor: '#0c1929' }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#0c1929' }}>
       <StatusBar barStyle="light-content" backgroundColor="#0c1929" />
       <ScrollView contentContainerStyle={{ padding: 24, paddingBottom: 100 }}>
         {/* Header */}
@@ -321,6 +322,6 @@ export default function CheckinScreen() {
           </>
         )}
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StatusBar, ScrollView } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useAuth } from '../contexts/AuthContext';
 import { Home, Dumbbell, ClipboardCheck, LogOut } from 'lucide-react-native';
 
@@ -14,7 +15,7 @@ export default function HomeScreen() {
   };
 
   return (
-    <View style={{ flex: 1, backgroundColor: '#0c1929' }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#0c1929' }}>
       <StatusBar barStyle="light-content" backgroundColor="#0c1929" />
       <ScrollView contentContainerStyle={{ padding: 24, paddingTop: 16 }}>
         {/* Header */}
@@ -101,7 +102,7 @@ export default function HomeScreen() {
           </Text>
         </View>
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 }
 

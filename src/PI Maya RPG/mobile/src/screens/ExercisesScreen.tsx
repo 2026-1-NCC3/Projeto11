@@ -8,6 +8,7 @@ import {
   StatusBar,
   Alert,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useAuth } from '../contexts/AuthContext';
 import { listarPrescricoes } from '../api/client';
 import type { Prescricao } from '../types';
@@ -70,7 +71,7 @@ export default function ExercisesScreen() {
   if (loading) return <LoadingSpinner />;
 
   return (
-    <View style={{ flex: 1, backgroundColor: '#0c1929' }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#0c1929' }}>
       <StatusBar barStyle="light-content" backgroundColor="#0c1929" />
 
       {/* Header */}
@@ -185,7 +186,7 @@ export default function ExercisesScreen() {
           )}
         />
       )}
-    </View>
+    </SafeAreaView>
   );
 }
 

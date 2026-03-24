@@ -17,6 +17,7 @@
 - [x] Adicionar endpoint `GET /auth/me` no backend
 - [x] Atualizar CORS wildcard em dev
 - [x] Build verificado: `npx expo export --platform android` ✅
+- [x] Rodar localmente via LAN com `npx expo start`
 - [ ] Realizar commit atômico: init(mobile) + feat(mobile)
 
 ## Parte 4: Interface e Funcionalidades Core (Paciente)
@@ -27,13 +28,13 @@
 - [ ] Realizar commit atômico: feat(mobile)
 
 ## Parte 5: Polimento e Resiliência
-- [ ] Refinar estilos da UI Native
-- [ ] Configurar alertas nativos de erro (Offline / Fetch Error)
-- [ ] Melhorar SafeArea e KeyboardAvoidingView
-- [ ] Realizar commit atômico: fix(mobile)
+- [x] Refinar estilos da UI Native
+- [x] Configurar alertas nativos de erro (Offline / Fetch Error)
+- [x] Melhorar SafeArea e KeyboardAvoidingView
+- [x] Realizar commit atômico: fix(mobile)
 
 ## Parte 6: Build e Artefato Final (EAS)
-- [ ] Configurar `eas.json` para builds locais/em núvem
-- [ ] Preencher metadata no `app.json` (icones, id, name)
-- [ ] Compilar projeto / Gerar APK
+- [x] Configurar `eas.json` para builds locais/em núvem
+- [x] Preencher metadata no `app.json` (icones, id, name)
+- [ ] Compilar projeto / Gerar APK (`eas build -p android --profile production`)
 - [ ] Realizar commit atômico: chore(mobile)

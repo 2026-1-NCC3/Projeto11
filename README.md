@@ -1,113 +1,148 @@
-
-
 # FECAP - Fundação de Comércio Álvares Penteado
-
 <p align="center">
 <a href= "https://www.fecap.br/"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhZPrRa89Kma0ZZogxm0pi-tCn_TLKeHGVxywp-LXAFGR3B1DPouAJYHgKZGV0XTEf4AE&usqp=CAU" alt="FECAP - Fundação de Comércio Álvares Penteado" border="0"></a>
 </p>
 
-# DevLeaders
-
+# Grupo: DevLeaders
 
 ## Integrantes: <a href="https://github.com/LuizZaim/">Luiz Henrique Zaim da Cruz</a>, <a href="https://github.com/lucio734/">Lúcio Vecchio</a>, <a href="https://github.com/GustavoDinizFroes/">Gustavo Diniz Froes</a>, <a href="https://github.com/Gustavo7122/">Gustavo Felizardo Pires</a>
 
 ## Professores Orientadores: <a href="https://www.linkedin.com/in/katia-bossi/">Katia Bossi</a>, <a href="https://www.linkedin.com/in/marco-aurelio-lima-barbosa/">Marco Aurélio</a>, <a href="https://www.linkedin.com/in/victorbarq/">Victor Rosetti</a>, <a href="https://www.linkedin.com/in/rodrigo-da-rosa-phd/">Rodrigo da Rosa</a>
-## Descrição
+
+## Proposta do Projeto:
 
 <p align="center">
-<img src="https://pix4free.org/assets/library/2021-01-20/originals/game.jpg" alt="NOME DO JOGO" border="0">
-  Game by <a href="http://www.nyphotographic.com/">Nick Youngson</a> <a rel="license" href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a> <a href="http://pix4free.org/">Pix4free</a>
+<img src="<img width="1024" height="1024" alt="logo dev leaders" src="https://github.com/user-attachments/assets/dcca1848-6658-4202-81a6-53a3d6ae1c44" />" alt="NOME DO JOGO" border="0">
 </p>
 
+<!-- Descreva aqui a proposta do projeto: o que é, qual problema resolve e para quem foi feito -->
 
-De um a dois parágrafos sobre o que é seu projeto e o que ele faz.
-<br><br>
-Meu projeto ajuda estudantes FECAP a configurarem seus githubs.
-<br><br>
-May the force be with you!
-<br><br>
+---
 
-## 🛠 Estrutura de pastas
+## 🎯 Objetivos
 
--Raiz<br>
-|<br>
-|-->documentos<br>
-  &emsp;|-->antigos<br>
-  &emsp;|Documentação.docx<br>
-|-->executáveis<br>
-  &emsp;|-->windows<br>
-  &emsp;|-->android<br>
-  &emsp;|-->HTML<br>
-|-->imagens<br>
-|-->src<br>
-  &emsp;|-->Backend<br>
-  &emsp;|-->Frontend<br>
-|readme.md<br>
+<!-- Liste os objetivos principais do projeto -->
 
-A pasta raiz contem dois arquivos que devem ser alterados:
+- Objetivo 1
+- Objetivo 2
+- Objetivo 3
 
-<b>README.MD</b>: Arquivo que serve como guia e explicação geral sobre seu projeto. O mesmo que você está lendo agora.
+---
 
-Há também 4 pastas que seguem da seguinte forma:
+## ⚙️ Funcionalidades
 
-<b>documentos</b>: Toda a documentação estará nesta pasta.
+| Funcionalidade | Descrição |
+|---|---|
+| Funcionalidade 1 | Descrição |
+| Funcionalidade 2 | Descrição |
+| Funcionalidade 3 | Descrição |
+| Funcionalidade 4 | Descrição |
 
-<b>executáveis</b>: Binários e executáveis do projeto devem estar nesta pasta.
+---
 
-<b>imagens</b>: Imagens do sistema
+## 🗂️ Estrutura de Pastas
 
-<b>src</b>: Pasta que contém o código fonte.
-
-## 🛠 Instalação
-
-<b>Android:</b>
-
-Faça o Download do JOGO.apk no seu celular.
-Execute o APK e siga as instruções de seu telefone.
-
-```sh
-Coloque código do prompt de comnando se for necessário
+```bash
+src
+├── modulo-a
+│   ├── pasta-1
+│   ├── pasta-2
+│   └── pasta-3
+│
+├── modulo-b
+│   └── (descrição)
+│
+└── modulo-c
+    ├── pasta-1
+    ├── pasta-2
+    └── pasta-3
 ```
 
-<b>Windows:</b>
+---
 
-Não há instalação! Apenas executável!
-Encontre o JOGO.exe na pasta executáveis e execute-o como qualquer outro programa.
+## 🛠️ Tecnologias Utilizadas
 
-```sh
-Coloque código do prompt de comnando se for necessário
+- [Tecnologia 1](https://link.com)
+- [Tecnologia 2](https://link.com)
+- [Tecnologia 3](https://link.com)
+- [Tecnologia 4](https://link.com)
+
+---
+
+## 🚀 Instalação e Execução Local
+
+### Pré-requisitos
+
+- [Ferramenta 1](https://link.com) — versão X ou superior
+- [Ferramenta 2](https://link.com)
+- [Ferramenta 3](https://link.com)
+
+### Passo a passo
+
+**1. Clone o repositório**
+```bash
+git clone https://github.com/usuario/repositorio.git
 ```
 
-<b>HTML:</b>
-
-Não há instalação!
-Encontre o index.html na pasta executáveis e execute-o como uma página WEB (através de algum browser).
-
-## 💻 Configuração para Desenvolvimento
-
-Descreva como instalar todas as dependências para desenvolvimento e como rodar um test-suite automatizado de algum tipo. Se necessário, faça isso para múltiplas plataformas.
-
-Para abrir este projeto você necessita das seguintes ferramentas:
-
--<a href="https://godotengine.org/download">GODOT</a>
-
-```sh
-make install
-npm test
-Coloque código do prompt de comnando se for necessário
+**2. Acesse a pasta do projeto**
+```bash
+cd repositorio
 ```
 
-## 📋 Licença/License
-Utilize o link <https://chooser-beta.creativecommons.org/> para fazer uma licença CC BY 4.0.
+**3. Instale as dependências**
+```bash
+npm install
+```
 
-## 🎓 Referências
+**4. Configure as variáveis de ambiente**
+```bash
+cp .env.example .env.local
+```
 
-Aqui estão as referências usadas no projeto.
+```env
+VARIAVEL_1=valor
+VARIAVEL_2=valor
+```
 
-1. <https://github.com/iuricode/readme-template>
-2. <https://github.com/gabrieldejesus/readme-model>
-3. <https://chooser-beta.creativecommons.org/>
-4. <https://freesound.org/>
-5. <https://www.toptal.com/developers/gitignore>
-6. Músicas por: <a href="https://freesound.org/people/DaveJf/sounds/616544/"> DaveJf </a> e <a href="https://freesound.org/people/DRFX/sounds/338986/"> DRFX </a> ambas com Licença CC 0.
+**5. Execute o projeto**
+```bash
+npm run dev
+```
 
+**6. Acesse no navegador**
+```
+http://localhost:3000
+```
+
+---
+
+## 🗃️ Banco de Dados
+
+<!-- Descreva o banco de dados utilizado, modelagem ou diagrama se houver -->
+
+> Diagrama de entidade-relacionamento e demais detalhes do banco em breve.
+
+---
+
+## 🔗 Referências
+
+- [Referência 1](https://link.com)
+- [Referência 2](https://link.com)
+- [Referência 3](https://link.com)
+
+---
+
+## 📄 Licença
+
+<p>
+FECAP - Fundação de Comércio Álvares Penteado © 2025 by
+<a href="https://github.com/LuizZaim/">Luiz Henrique Zaim da Cruz</a>,
+<a href="https://github.com/lucio734/">Lúcio Vecchio</a>,
+<a href="https://github.com/GustavoDinizFroes/">Gustavo Diniz Froes</a>,
+<a href="https://github.com/Gustavo7122/">Gustavo Felizardo Pires</a>
+is licensed under
+<a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>
+<img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" height="20" width="20" style="margin-left:0.2em;">
+<img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" height="20" width="20" style="margin-left:0.2em;">
+<img src="https://mirrors.creativecommons.org/presskit/icons/sa.svg" height="20" width="20" style="margin-left:0.2em;">
+</p>

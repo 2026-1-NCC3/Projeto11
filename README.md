@@ -9,15 +9,13 @@
 
 ## Professores Orientadores: <a href="https://www.linkedin.com/in/katia-bossi/">Katia Bossi</a>, <a href="https://www.linkedin.com/in/marco-aurelio-lima-barbosa/">Marco Aurélio</a>, <a href="https://www.linkedin.com/in/victorbarq/">Victor Rosetti</a>, <a href="https://www.linkedin.com/in/rodrigo-da-rosa-phd/">Rodrigo da Rosa</a>
 
-## Proposta do Projeto:
 
 <p align="center">
-<img src="<img width="1024" height="1024" alt="logo dev leaders" src="https://github.com/user-attachments/assets/dcca1848-6658-4202-81a6-53a3d6ae1c44" />" alt="NOME DO JOGO" border="0">
+  <img src="https://github.com/user-attachments/assets/dcca1848-6658-4202-81a6-53a3d6ae1c44" width="450" height="450" alt="logo dev leaders" border="0">
 </p>
 
-<!-- Descreva aqui a proposta do projeto: o que é, qual problema resolve e para quem foi feito -->
+## Proposta do Projeto:
 
----
 
 ## 🎯 Objetivos
 

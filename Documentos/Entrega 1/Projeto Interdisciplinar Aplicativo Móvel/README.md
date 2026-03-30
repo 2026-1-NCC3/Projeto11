@@ -6,7 +6,7 @@
  > [!IMPORTANT]
  > **DOWNLOAD DO APK (78.3 MB)**
  > Devido ao limite de tamanho do GitHub, o instalador está disponível para download no link abaixo:
- > [Clique aqui para baixar o App Mobile Maya RPG.apk](https://drive.google.com/file/d/1-6qjuOqVZ_PHN3HFVkXKMHMS8yrJfVKB/view?usp=sharing)
+ > [Clique aqui para baixar o App Mobile Maya RPG.apk](https://drive.google.com/file/d/1pOUFJhAo96l1vOV2uGp4NdYs7wwGZ2Vi/view?usp=sharing)
 
 
 

@@ -1,11 +1,13 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StatusBar, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useNavigation } from '@react-navigation/native';
 import { useAuth } from '../contexts/AuthContext';
 import { Home, Dumbbell, ClipboardCheck, LogOut } from 'lucide-react-native';
 
 export default function HomeScreen() {
   const { user, logout } = useAuth();
+  const navigation = useNavigation<any>();
 
   const greeting = () => {
     const hour = new Date().getHours();
@@ -77,12 +79,14 @@ export default function HomeScreen() {
             title="Meus Exercícios"
             subtitle="Veja suas prescrições atuais"
             bgColor="#0ea5e9"
+            onPress={() => navigation.navigate('Exercicios')}
           />
           <ActionCard
             icon={<ClipboardCheck size={24} color="#a855f7" />}
             title="Check-in Diário"
             subtitle="Registre dor e progresso de hoje"
             bgColor="#a855f7"
+            onPress={() => navigation.navigate('Checkin')}
           />
         </View>
 
@@ -113,15 +117,18 @@ function ActionCard({
   title,
   subtitle,
   bgColor,
+  onPress,
 }: {
   icon: React.ReactNode;
   title: string;
   subtitle: string;
   bgColor: string;
+  onPress: () => void;
 }) {
   return (
     <TouchableOpacity
       activeOpacity={0.7}
+      onPress={onPress}
       style={{
         backgroundColor: '#1e293b',
         borderRadius: 14,
@@ -150,3 +157,4 @@ function ActionCard({
     </TouchableOpacity>
   );
 }
+

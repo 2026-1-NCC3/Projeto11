@@ -3,6 +3,12 @@
 **Ciência da Computação · FECAP 2026-1**
 
 ---
+ > [!IMPORTANT]
+ > **DOWNLOAD DO APK (78.3 MB)**
+ > Devido ao limite de tamanho do GitHub, o instalador está disponível para download no link abaixo:
+ > [Clique aqui para baixar o App Mobile Maya RPG.apk](https://drive.google.com/file/d/1-6qjuOqVZ_PHN3HFVkXKMHMS8yrJfVKB/view?usp=sharing)
+
+
 
 ##  Escopo da Entrega
 

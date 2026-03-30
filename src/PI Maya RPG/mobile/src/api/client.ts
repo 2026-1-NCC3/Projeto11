@@ -45,41 +45,9 @@ export async function logout(): Promise<void> {
   }
 }
 
-// ── Prescrições ──────────────────────────────────────────────
-
-const MOCK_PRESCRICOES: Prescricao[] = [
-  {
-    id: 'mock-presc-1',
-    paciente_id: 'mock-paciente',
-    exercicio_id: 'mock-ex-1',
-    series: 3,
-    repeticoes: 15,
-    frequencia: 'Diário',
-    observacoes: 'Faça com cuidado',
-    ativo: true,
-    created_at: new Date().toISOString(),
-    exercicio_nome: 'Alongamento de Cadeia Posterior',
-    exercicio_tipo: 'alongamento',
-    exercicio_dificuldade: 'facil',
-  },
-  {
-    id: 'mock-presc-2',
-    paciente_id: 'mock-paciente',
-    exercicio_id: 'mock-ex-2',
-    series: 3,
-    repeticoes: 10,
-    frequencia: '3x por semana',
-    ativo: true,
-    created_at: new Date().toISOString(),
-    exercicio_nome: 'Ponte Glútea',
-    exercicio_tipo: 'fortalecimento',
-    exercicio_dificuldade: 'moderado',
-  }
-];
-
 export async function listarPrescricoes(pacienteId: string): Promise<Prescricao[]> {
-  // Mock temporarily to bypass backend 500 errors caused by invalid UUIDs in seed
-  return new Promise(resolve => setTimeout(() => resolve(MOCK_PRESCRICOES), 500));
+  const { data } = await api.get<Prescricao[]>(`/prescricoes/paciente/${pacienteId}`);
+  return data;
 }
 
 // ── Check-ins ────────────────────────────────────────────────
@@ -91,24 +59,18 @@ export async function registrarCheckin(payload: {
   nivel_dor?: number;
   observacoes?: string;
 }): Promise<Checkin> {
-  // Mock temporarily
-  return new Promise(resolve => setTimeout(() => resolve({
-    id: `mock-checkin-${Date.now()}`,
-    paciente_id: payload.paciente_id,
-    prescricao_id: payload.prescricao_id,
-    executado: payload.executado,
-    nivel_dor: payload.nivel_dor,
-    data: new Date().toISOString(),
-    created_at: new Date().toISOString()
-  }), 500));
+  const { data } = await api.post<Checkin>('/checkins', payload);
+  return data;
 }
 
 export async function listarCheckins(pacienteId: string): Promise<Checkin[]> {
-  return [];
+  const { data } = await api.get<Checkin[]>(`/checkins/paciente/${pacienteId}`);
+  return data;
 }
 
 export async function buscarEvolucao(pacienteId: string): Promise<EvolucaoSemanal[]> {
-  return [];
+  const { data } = await api.get<EvolucaoSemanal[]>(`/checkins/paciente/${pacienteId}/evolucao`);
+  return data;
 }
 
 export default api;

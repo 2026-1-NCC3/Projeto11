@@ -18,14 +18,14 @@
 - [x] Atualizar CORS wildcard em dev
 - [x] Build verificado: `npx expo export --platform android` ✅
 - [x] Rodar localmente via LAN com `npx expo start`
-- [ ] Realizar commit atômico: init(mobile) + feat(mobile)
+- [x] Realizar commit atômico: init(mobile) + feat(mobile)
 
 ## Parte 4: Interface e Funcionalidades Core (Paciente)
 - [x] Desenvolver `HomeScreen` (Dash do paciente)
 - [x] Desenvolver `ExercisesScreen` (Lista de Prescrições)
 - [x] Desenvolver `CheckinScreen` (Registro de dor e conclusão)
 - [x] Integrar endpoints via Axios Mobile
-- [ ] Realizar commit atômico: feat(mobile)
+- [x] Realizar commit atômico: feat(mobile)
 
 ## Parte 5: Polimento e Resiliência
 - [x] Refinar estilos da UI Native
@@ -36,5 +36,5 @@
 ## Parte 6: Build e Artefato Final (EAS)
 - [x] Configurar `eas.json` para builds locais/em núvem
 - [x] Preencher metadata no `app.json` (icones, id, name)
-- [ ] Compilar projeto / Gerar APK (`eas build -p android --profile production`)
-- [ ] Realizar commit atômico: chore(mobile)
+- [x] Compilar projeto / Gerar APK (`eas build -p android --profile production`)
+- [x] Realizar commit atômico: chore(mobile)

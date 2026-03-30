@@ -21,7 +21,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Carrega sessão salva no boot
+  // Carrega sessão salva no boot e atualiza dados do servidor
   useEffect(() => {
     async function loadStoredSession() {
       try {
@@ -31,7 +31,20 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         ]);
 
         if (storedToken && storedUser) {
-          setUser(JSON.parse(storedUser));
+          const parsed = JSON.parse(storedUser);
+          setUser(parsed);
+
+          // Atualizar dados do servidor (garante paciente_id atualizado)
+          try {
+            const freshData = await getMe();
+            if (freshData) {
+              const updatedUser = { ...parsed, ...freshData };
+              setUser(updatedUser);
+              await AsyncStorage.setItem('user', JSON.stringify(updatedUser));
+            }
+          } catch {
+            // Sem rede — continua com dados salvos
+          }
         }
       } catch {
         // Storage corrompido — desloga

@@ -9,7 +9,7 @@ const API_URL = 'https://maya-rpg-api.onrender.com';
 const api = axios.create({
   baseURL: API_URL,
   headers: { 'Content-Type': 'application/json' },
-  timeout: 15000,
+  timeout: 30000,
 });
 
 // ── Interceptor: Injeta token JWT ────────────────────────────

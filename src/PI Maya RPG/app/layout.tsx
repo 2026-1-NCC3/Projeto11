@@ -1,6 +1,28 @@
 import type { Metadata } from 'next';
+import { Roboto, Roboto_Condensed, Poppins } from 'next/font/google';
 import '@/styles/globals.css';
 import { Providers } from './providers';
+
+const roboto = Roboto({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '700'],
+  variable: '--font-roboto',
+  display: 'swap',
+});
+
+const robotoCondensed = Roboto_Condensed({
+  subsets: ['latin'],
+  weight: ['700'],
+  variable: '--font-display',
+  display: 'swap',
+});
+
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-poppins',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: 'Maya Yamamoto RPG',
@@ -13,16 +35,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pt-BR">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto+Condensed:wght@700&family=Roboto:wght@300;400;500;700&display=swap"
-          rel="stylesheet"
-        />
-      </head>
-      <body className="font-sans antialiased">
+    <html lang="pt-BR" className={`${roboto.variable} ${robotoCondensed.variable} ${poppins.variable}`}>
+      <body className="font-roboto antialiased">
         <Providers>{children}</Providers>
       </body>
     </html>

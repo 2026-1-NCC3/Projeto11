@@ -18,9 +18,9 @@ const config: Config = {
         'maya-gray-soft': '#949494',
       },
       fontFamily: {
-        roboto: ['Roboto', 'sans-serif'],
-        display: ['Roboto Condensed', 'sans-serif'],
-        poppins: ['Poppins', 'sans-serif'],
+        roboto: ['var(--font-roboto)', 'sans-serif'],
+        display: ['var(--font-display)', 'sans-serif'],
+        poppins: ['var(--font-poppins)', 'sans-serif'],
       },
       borderRadius: {
         maya: '5px',

@@ -1,3 +1,6 @@
+// Sidebar do painel administrativo (admin / profissional).
+// Aparece no lado esquerdo do layout com os links de navegação.
+// No mobile, vira um menu hambúrguer com overlay.
 'use client';
 
 import Link from 'next/link';
@@ -16,6 +19,7 @@ import {
 } from 'lucide-react';
 import { useState } from 'react';
 
+// Lista de links que aparecem na sidebar
 const adminLinks = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/pacientes', label: 'Pacientes', icon: Users },
@@ -25,13 +29,13 @@ const adminLinks = [
 ];
 
 export function AdminSidebar() {
-  const pathname = usePathname();
+  const pathname = usePathname();         // rota atual (pra destacar o link ativo)
   const { user, logout } = useAuth();
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false); // controla o menu no celular
 
   return (
     <>
-      {/* Botão mobile */}
+      {/* Botão hambúrguer — só aparece no mobile (telas < lg) */}
       <button
         onClick={() => setMobileOpen(true)}
         className="fixed top-4 left-4 z-50 lg:hidden p-2 rounded-maya bg-white shadow-maya"
@@ -40,7 +44,7 @@ export function AdminSidebar() {
         <Menu className="h-5 w-5 text-maya-teal-dark" />
       </button>
 
-      {/* Overlay mobile */}
+      {/* Overlay escuro atrás da sidebar quando aberta no mobile */}
       {mobileOpen && (
         <div
           className="fixed inset-0 z-40 bg-black/30 lg:hidden"
@@ -48,15 +52,15 @@ export function AdminSidebar() {
         />
       )}
 
-      {/* Sidebar */}
+      {/* A sidebar em si */}
       <aside
         className={cn(
           'fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-gray-100 flex flex-col transition-transform duration-300',
-          'lg:translate-x-0 lg:static lg:z-auto',
-          mobileOpen ? 'translate-x-0' : '-translate-x-full'
+          'lg:translate-x-0 lg:static lg:z-auto',   // no desktop, sempre visível
+          mobileOpen ? 'translate-x-0' : '-translate-x-full' // no mobile, desliza
         )}
       >
-        {/* Header */}
+        {/* Cabeçalho com nome do sistema e botão de fechar (mobile) */}
         <div className="flex items-center justify-between p-6 border-b border-gray-100">
           <div>
             <h1 className="font-display text-xl font-bold text-maya-teal-dark">Maya RPG</h1>
@@ -67,21 +71,22 @@ export function AdminSidebar() {
           </button>
         </div>
 
-        {/* Navigation */}
+        {/* Links de navegação */}
         <nav className="flex-1 p-4 space-y-1.5 overflow-y-auto">
           {adminLinks.map((link) => {
+            // Verifica se esse link é a página atual (pra destacar em azul)
             const isActive = pathname === link.href || pathname.startsWith(link.href + '/');
             const Icon = link.icon;
             return (
               <Link
                 key={link.href}
                 href={link.href}
-                onClick={() => setMobileOpen(false)}
+                onClick={() => setMobileOpen(false)} // fecha o menu mobile ao clicar
                 className={cn(
                   'flex items-center gap-3 px-4 py-2.5 rounded-maya text-sm font-medium transition-all duration-200',
                   isActive
-                    ? 'bg-maya-teal/10 text-maya-teal-dark shadow-sm'
-                    : 'text-maya-gray-soft hover:bg-gray-50 hover:text-maya-dark'
+                    ? 'bg-maya-teal/10 text-maya-teal-dark shadow-sm'      // link ativo
+                    : 'text-maya-gray-soft hover:bg-gray-50 hover:text-maya-dark' // link normal
                 )}
               >
                 <Icon className="h-5 w-5 flex-shrink-0" />
@@ -91,9 +96,10 @@ export function AdminSidebar() {
           })}
         </nav>
 
-        {/* User + Logout */}
+        {/* Rodapé: dados do usuário logado + botão de sair */}
         <div className="p-4 border-t border-gray-100">
           <div className="flex items-center gap-3 px-2 mb-3">
+            {/* Avatar com a primeira letra do nome */}
             <div className="w-8 h-8 rounded-full bg-maya-teal/20 flex items-center justify-center">
               <span className="text-sm font-bold text-maya-teal-dark">
                 {user?.nome?.charAt(0) || '?'}

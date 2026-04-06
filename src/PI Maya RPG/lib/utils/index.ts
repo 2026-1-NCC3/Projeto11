@@ -1,12 +1,17 @@
+// Funções utilitárias e constantes usadas em todo o projeto.
+// Nada de lógica de negócio aqui — só helpers genéricos.
+
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
-/** Combina classes Tailwind sem conflitos */
+// Junta classes do Tailwind sem conflito.
+// Exemplo: cn('p-4 p-2') → 'p-2' (a segunda sobrescreve a primeira)
+// Isso é útil quando componentes recebem className por prop.
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-/** Formata data para pt-BR */
+// Formata uma data pro padrão brasileiro (dd/mm/aaaa)
 export function formatDate(date: string | Date): string {
   return new Intl.DateTimeFormat('pt-BR', {
     day: '2-digit',
@@ -15,7 +20,7 @@ export function formatDate(date: string | Date): string {
   }).format(new Date(date));
 }
 
-/** Formata data e hora para pt-BR */
+// Formata data + hora pro padrão brasileiro (dd/mm/aaaa hh:mm)
 export function formatDateTime(date: string | Date): string {
   return new Intl.DateTimeFormat('pt-BR', {
     day: '2-digit',
@@ -26,7 +31,9 @@ export function formatDateTime(date: string | Date): string {
   }).format(new Date(date));
 }
 
-/** Mapas de labels em português */
+// Labels em português para os enums que vêm do banco de dados.
+// Evita ficar traduzindo manualmente em cada tela.
+
 export const DIFICULDADE_LABELS: Record<string, string> = {
   facil: 'Fácil',
   moderado: 'Moderado',

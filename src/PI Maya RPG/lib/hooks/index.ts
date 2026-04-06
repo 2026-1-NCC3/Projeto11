@@ -1,3 +1,7 @@
+// Hooks personalizados do projeto — simplificam o uso do React Query.
+// Em vez de escrever toda a config do useQuery em cada página,
+// a gente centraliza aqui e só chama: const { data } = usePacientes()
+
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import {
   listarPacientes,
@@ -22,6 +26,7 @@ import type { PacienteFormData, ExercicioFormData } from '@/lib/types';
 
 // ── Pacientes ────────────────────────────────────────────────
 
+// Lista todos os pacientes (só admin/profissional vê)
 export function usePacientes() {
   return useQuery({
     queryKey: ['pacientes'],
@@ -29,14 +34,16 @@ export function usePacientes() {
   });
 }
 
+// Busca um paciente específico pelo id
 export function usePaciente(id: string) {
   return useQuery({
     queryKey: ['pacientes', id],
     queryFn: () => buscarPaciente(id),
-    enabled: !!id,
+    enabled: !!id, // só busca se tiver um id de verdade
   });
 }
 
+// Cria um paciente novo e invalida a lista pra atualizar
 export function useCriarPaciente() {
   const qc = useQueryClient();
   return useMutation({
@@ -45,6 +52,7 @@ export function useCriarPaciente() {
   });
 }
 
+// Atualiza os dados de um paciente existente
 export function useAtualizarPaciente(id: string) {
   const qc = useQueryClient();
   return useMutation({
@@ -56,6 +64,7 @@ export function useAtualizarPaciente(id: string) {
   });
 }
 
+// Remove um paciente (só admin pode)
 export function useDeletarPaciente() {
   const qc = useQueryClient();
   return useMutation({
@@ -66,6 +75,7 @@ export function useDeletarPaciente() {
 
 // ── Exercícios ───────────────────────────────────────────────
 
+// Lista exercícios com filtros opcionais (tipo, dificuldade, busca)
 export function useExercicios(params?: { tipo?: string; dificuldade?: string; busca?: string }) {
   return useQuery({
     queryKey: ['exercicios', params],
@@ -73,6 +83,7 @@ export function useExercicios(params?: { tipo?: string; dificuldade?: string; bu
   });
 }
 
+// Busca um exercício específico
 export function useExercicio(id: string) {
   return useQuery({
     queryKey: ['exercicios', id],
@@ -81,6 +92,7 @@ export function useExercicio(id: string) {
   });
 }
 
+// Cadastra um exercício novo no banco
 export function useCriarExercicio() {
   const qc = useQueryClient();
   return useMutation({
@@ -89,6 +101,7 @@ export function useCriarExercicio() {
   });
 }
 
+// Atualiza um exercício existente
 export function useAtualizarExercicio(id: string) {
   const qc = useQueryClient();
   return useMutation({
@@ -100,6 +113,7 @@ export function useAtualizarExercicio(id: string) {
   });
 }
 
+// Desativa um exercício (soft delete — não apaga do banco)
 export function useDeletarExercicio() {
   const qc = useQueryClient();
   return useMutation({
@@ -110,6 +124,7 @@ export function useDeletarExercicio() {
 
 // ── Prescrições ──────────────────────────────────────────────
 
+// Lista os exercícios prescritos pra um paciente
 export function usePrescricoes(pacienteId: string) {
   return useQuery({
     queryKey: ['prescricoes', pacienteId],
@@ -118,6 +133,7 @@ export function usePrescricoes(pacienteId: string) {
   });
 }
 
+// Prescreve um novo exercício pra um paciente
 export function useCriarPrescricao() {
   const qc = useQueryClient();
   return useMutation({
@@ -130,6 +146,7 @@ export function useCriarPrescricao() {
 
 // ── Check-ins ────────────────────────────────────────────────
 
+// Lista os check-ins (registros de exercício) de um paciente
 export function useCheckins(pacienteId: string) {
   return useQuery({
     queryKey: ['checkins', pacienteId],
@@ -138,6 +155,7 @@ export function useCheckins(pacienteId: string) {
   });
 }
 
+// Busca a evolução semanal do paciente (média de dor, taxa de execução)
 export function useEvolucao(pacienteId: string) {
   return useQuery({
     queryKey: ['evolucao', pacienteId],
@@ -146,6 +164,7 @@ export function useEvolucao(pacienteId: string) {
   });
 }
 
+// Registra um check-in (paciente marcou que fez o exercício hoje)
 export function useRegistrarCheckin() {
   const qc = useQueryClient();
   return useMutation({
@@ -159,6 +178,7 @@ export function useRegistrarCheckin() {
 
 // ── Prontuário ───────────────────────────────────────────────
 
+// Lista as sessões de atendimento de um paciente
 export function useSessoes(pacienteId: string) {
   return useQuery({
     queryKey: ['sessoes', pacienteId],
@@ -167,6 +187,7 @@ export function useSessoes(pacienteId: string) {
   });
 }
 
+// Registra uma nova sessão no prontuário do paciente
 export function useCriarSessao(pacienteId: string) {
   const qc = useQueryClient();
   return useMutation({

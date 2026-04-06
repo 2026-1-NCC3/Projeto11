@@ -1,12 +1,16 @@
+// Componente de Card — caixa branca com sombra que usamos em quase toda tela.
+// Serve pra agrupar informações visualmente (tabelas, formulários, stats, etc).
+
 import { cn } from '@/lib/utils';
 import type { ReactNode } from 'react';
 
 interface CardProps {
   children: ReactNode;
   className?: string;
-  padding?: boolean;
+  padding?: boolean;   // por padrão vem com padding, mas dá pra desligar
 }
 
+// Card básico: fundo branco, borda sutil, sombra leve
 export function Card({ children, className, padding = true }: CardProps) {
   return (
     <div
@@ -21,10 +25,11 @@ export function Card({ children, className, padding = true }: CardProps) {
   );
 }
 
+// CardHeader: cabeçalho padronizado dentro de um Card (título + subtítulo + ação)
 interface CardHeaderProps {
   title: string;
   subtitle?: string;
-  action?: ReactNode;
+  action?: ReactNode;   // botão ou link no canto direito (ex: "Ver todos")
 }
 
 export function CardHeader({ title, subtitle, action }: CardHeaderProps) {

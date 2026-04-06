@@ -1,3 +1,6 @@
+// Servidor principal da API — ponto de entrada do backend.
+// Configura o Express, registra as rotas e sobe o servidor na porta 8000.
+
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
@@ -11,39 +14,44 @@ import prescricoesRoutes from './routes/prescricoes.routes';
 import checkinsRoutes from './routes/checkins.routes';
 import prontuarioRoutes from './routes/prontuario.routes';
 
+// Carrega as variáveis de ambiente do arquivo .env
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 8000;
 
 // ── Middlewares globais ──────────────────────────────────────
-app.use(helmet());
+app.use(helmet());               // cabeçalhos de segurança HTTP
 app.use(cors({
-  origin: process.env.CORS_ORIGIN || '*',
+  origin: process.env.CORS_ORIGIN || '*',  // permite requisições do frontend
   credentials: true,
 }));
-app.use(express.json({ limit: '10mb' }));
+app.use(express.json({ limit: '10mb' }));  // parse do body JSON (limite pra uploads)
 
 // ── Health check ─────────────────────────────────────────────
+// Rota simples pra verificar se o servidor tá no ar (usada pelo Render)
 app.get('/health', (_req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
 // ── Rotas ────────────────────────────────────────────────────
-app.use('/auth', authRoutes);
-app.use('/pacientes', pacientesRoutes);
-app.use('/exercicios', exerciciosRoutes);
-app.use('/prescricoes', prescricoesRoutes);
-app.use('/checkins', checkinsRoutes);
-app.use('/prontuario', prontuarioRoutes);
+// Cada módulo tem seu arquivo de rotas separado
+app.use('/auth', authRoutes);             // login, logout, /me
+app.use('/pacientes', pacientesRoutes);   // CRUD de pacientes
+app.use('/exercicios', exerciciosRoutes); // CRUD do banco de exercícios
+app.use('/prescricoes', prescricoesRoutes); // prescrições de exercícios
+app.use('/checkins', checkinsRoutes);     // check-ins diários do paciente
+app.use('/prontuario', prontuarioRoutes); // sessões de atendimento
 
 // ── Tratamento de erros global ───────────────────────────────
+// Se alguma rota lançar um erro não tratado, cai aqui
 app.use((err: Error, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
   console.error('[ERROR]', err.message);
   res.status(500).json({ error: 'Erro interno do servidor' });
 });
 
 // ── Inicialização ────────────────────────────────────────────
+// Testa a conexão com o banco e sobe o servidor
 async function start() {
   await testConnection();
   app.listen(PORT, () => {

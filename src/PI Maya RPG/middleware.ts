@@ -1,10 +1,13 @@
+// Middleware do Next.js — roda antes de cada requisição no servidor.
+// Por enquanto está DESATIVADO (matcher vazio = não intercepta nada).
+// A proteção de rotas é feita no lado do cliente pelo AuthContext e ProtectedRoute.
+// Se quiser reativar no futuro (ex: proteção server-side), é só adicionar rotas no matcher.
+
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-// Token fica em localStorage (cliente). Proteção de rotas é feita via AuthContext/ProtectedRoute.
-// Middleware desativado: sem regras ativas no momento.
-// Para reativar, descomente o matcher e adicione lógica ao handler.
 export function middleware(_request: NextRequest) {
+  // Deixa passar tudo — sem regras ativas no momento
   return NextResponse.next();
 }
 

@@ -1,22 +1,26 @@
+// Componente de Input reutilizável — campo de texto padronizado.
+// Suporta label, mensagem de erro e todos os atributos nativos de <input>.
 'use client';
 
 import { forwardRef, type InputHTMLAttributes } from 'react';
 import { cn } from '@/lib/utils';
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  label?: string;
-  error?: string;
+  label?: string;   // texto que aparece acima do campo
+  error?: string;   // mensagem de erro (fica vermelho quando tem)
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
   ({ className, label, error, id, ...props }, ref) => {
     return (
       <div className="flex flex-col gap-1.5">
+        {/* Label do campo (se tiver) */}
         {label && (
           <label htmlFor={id} className="text-sm font-medium text-maya-dark">
             {label}
           </label>
         )}
+        {/* Campo de input com estilo condicional (vermelho se tiver erro) */}
         <input
           ref={ref}
           id={id}
@@ -28,6 +32,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           )}
           {...props}
         />
+        {/* Mensagem de erro (aparece embaixo do campo) */}
         {error && <p className="text-xs text-red-500">{error}</p>}
       </div>
     );

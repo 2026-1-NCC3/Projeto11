@@ -1,3 +1,6 @@
+// Sidebar do portal do paciente.
+// No celular, aparece como barra de navegação fixa na parte de baixo (estilo app).
+// No desktop, vira a sidebar lateral padrão.
 'use client';
 
 import Link from 'next/link';
@@ -7,6 +10,7 @@ import { cn } from '@/lib/utils';
 import { Home, Dumbbell, History, UserCircle, LogOut, Menu, X } from 'lucide-react';
 import { useState } from 'react';
 
+// Links do portal do paciente
 const pacienteLinks = [
   { href: '/inicio', label: 'Início', icon: Home },
   { href: '/meus-exercicios', label: 'Meus Exercícios', icon: Dumbbell },
@@ -21,7 +25,7 @@ export function PacienteSidebar() {
 
   return (
     <>
-      {/* Bottom navigation mobile */}
+      {/* Navegação mobile: barra fixa na parte de baixo da tela (estilo app) */}
       <nav className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-gray-100 lg:hidden">
         <div className="flex items-center justify-around py-2">
           {pacienteLinks.map((link) => {
@@ -44,13 +48,15 @@ export function PacienteSidebar() {
         </div>
       </nav>
 
-      {/* Desktop sidebar */}
+      {/* Sidebar desktop: menu lateral fixo (só aparece em telas grandes) */}
       <aside className="hidden lg:flex fixed inset-y-0 left-0 w-64 bg-white border-r border-gray-100 flex-col">
+        {/* Cabeçalho */}
         <div className="p-6 border-b border-gray-100">
           <h1 className="font-display text-xl font-bold text-maya-teal-dark">Maya RPG</h1>
           <p className="text-xs text-maya-gray-soft mt-0.5">Portal do Paciente</p>
         </div>
 
+        {/* Links de navegação */}
         <nav className="flex-1 p-4 space-y-1.5 overflow-y-auto">
           {pacienteLinks.map((link) => {
             const isActive = pathname === link.href || pathname.startsWith(link.href + '/');
@@ -73,6 +79,7 @@ export function PacienteSidebar() {
           })}
         </nav>
 
+        {/* Rodapé: nome do paciente e botão de sair */}
         <div className="p-4 border-t border-gray-100">
           <div className="flex items-center gap-3 px-2 mb-3">
             <div className="w-8 h-8 rounded-full bg-maya-coral/20 flex items-center justify-center">

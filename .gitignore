@@ -43,3 +43,7 @@ google-services.json
 
 # Android Profiling
 *.hprof
+Web Maya RPG/maya-rpg-web/components/PacienteFormulario.tsx
+Web Maya RPG/maya-rpg-web/app/dashboard/pacientes/\[id\]/editar/page.tsx
+Web Maya RPG/maya-rpg-web/app/dashboard/pacientes/\[id\]/page.tsx
+Web Maya RPG/maya-rpg-web/app/dashboard/pacientes/\[id\]/page.tsx

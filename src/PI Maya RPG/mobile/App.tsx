@@ -95,6 +95,12 @@ export default function App() {
   const [senhaInput, setSenhaInput] = useState('');
   const [usuario, setUsuario] = useState<Usuario | null>(null);
 
+  // Cadastro
+  const [cadNome, setCadNome] = useState('');
+  const [cadEmail, setCadEmail] = useState('');
+  const [cadSenha, setCadSenha] = useState('');
+  const [cadSenhaConfirm, setCadSenhaConfirm] = useState('');
+
   // Check-in
   const [dorSelecionada, setDorSelecionada] = useState<number | null>(null);
   const [observacao, setObservacao] = useState('');
@@ -155,6 +161,47 @@ export default function App() {
         { id: '2', nivel_dor: 5, observacoes: 'Exemplo Offline: Melhora leve', data: '03/05/2026', executado: true, exercicio_nome: 'Ponte Glútea', exercicio_tipo: 'Fortalecimento' },
       ]);
       setTelaAtual('HOME');
+    } finally {
+      setCarregando(false);
+    }
+  };
+
+  // ─── Cadastro ────────────────────────────────────────────
+  const realizarCadastro = async () => {
+    if (!cadNome || !cadEmail || !cadSenha) return Alert.alert("Aviso", "Preencha todos os campos.");
+    if (cadSenha.length < 6) return Alert.alert("Aviso", "A senha deve ter pelo menos 6 caracteres.");
+    if (cadSenha !== cadSenhaConfirm) return Alert.alert("Aviso", "As senhas não coincidem.");
+    setCarregando(true);
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 8000);
+    try {
+      const response = await fetch(`${API_URL}/auth/register`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          nome: cadNome.trim(),
+          email: cadEmail.trim().toLowerCase(),
+          senha: cadSenha
+        }),
+        signal: controller.signal
+      });
+      clearTimeout(timeoutId);
+
+      if (response.ok) {
+        const data = await response.json();
+        const user: Usuario = data.user;
+        await salvarAuth(data.access_token, user);
+        setUsuario(user);
+        setModoOffline(false);
+        setCadNome(''); setCadEmail(''); setCadSenha(''); setCadSenhaConfirm('');
+        Alert.alert("Sucesso", "Conta criada com sucesso!");
+        setTelaAtual('HOME');
+      } else {
+        const err = await response.json().catch(() => ({}));
+        Alert.alert("Erro", err.error || "Falha ao criar conta.");
+      }
+    } catch (_) {
+      Alert.alert("Erro", "Falha de conexão. Tente novamente.");
     } finally {
       setCarregando(false);
     }
@@ -276,7 +323,7 @@ export default function App() {
       <StatusBar barStyle="dark-content" />
 
       {/* ──── HEADER ──── */}
-      {telaAtual !== 'LOGIN' && (
+      {telaAtual !== 'LOGIN' && telaAtual !== 'CADASTRO' && (
         <View style={styles.header}>
           <LogoMaya escala={0.6} />
           <TouchableOpacity onPress={realizarLogout}>
@@ -316,6 +363,70 @@ export default function App() {
                   ? <ActivityIndicator color="#fff" />
                   : <Text style={styles.btnTxt}>ENTRAR</Text>
                 }
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={{ marginTop: 20, alignItems: 'center' }}
+                onPress={() => setTelaAtual('CADASTRO')}
+              >
+                <Text style={{ color: CORES.textSub, fontSize: 14 }}>
+                  Não tem conta? <Text style={{ color: CORES.cyan, fontWeight: 'bold' }}>Cadastre-se</Text>
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        )}
+
+        {/* ══════ TELA CADASTRO ══════ */}
+        {telaAtual === 'CADASTRO' && (
+          <View style={[styles.fullCenter, { marginTop: 40 }]}>
+            <LogoMaya escala={1.4} />
+            <Text style={{ fontSize: 18, fontWeight: 'bold', color: CORES.dark, marginTop: 20 }}>Criar Conta</Text>
+            <View style={{ width: '100%', marginTop: 30 }}>
+              <TextInput
+                style={styles.input}
+                placeholder="Nome completo"
+                value={cadNome}
+                onChangeText={setCadNome}
+              />
+              <TextInput
+                style={styles.input}
+                placeholder="Email"
+                value={cadEmail}
+                onChangeText={setCadEmail}
+                keyboardType="email-address"
+                autoCapitalize="none"
+              />
+              <TextInput
+                style={styles.input}
+                placeholder="Senha (mín. 6 caracteres)"
+                value={cadSenha}
+                onChangeText={setCadSenha}
+                secureTextEntry
+              />
+              <TextInput
+                style={styles.input}
+                placeholder="Confirmar senha"
+                value={cadSenhaConfirm}
+                onChangeText={setCadSenhaConfirm}
+                secureTextEntry
+              />
+              <TouchableOpacity
+                style={[styles.btnPrimary, { backgroundColor: CORES.coral }, carregando && { opacity: 0.6 }]}
+                onPress={realizarCadastro}
+                disabled={carregando}
+              >
+                {carregando
+                  ? <ActivityIndicator color="#fff" />
+                  : <Text style={styles.btnTxt}>CRIAR CONTA</Text>
+                }
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={{ marginTop: 20, alignItems: 'center' }}
+                onPress={() => setTelaAtual('LOGIN')}
+              >
+                <Text style={{ color: CORES.textSub, fontSize: 14 }}>
+                  Já tem conta? <Text style={{ color: CORES.cyan, fontWeight: 'bold' }}>Entrar</Text>
+                </Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -441,7 +552,7 @@ export default function App() {
       </ScrollView>
 
       {/* ──── NAVBAR ──── */}
-      {telaAtual !== 'LOGIN' && (
+      {telaAtual !== 'LOGIN' && telaAtual !== 'CADASTRO' && (
         <View style={styles.navBar}>
           <TouchableOpacity style={styles.navItem} onPress={() => setTelaAtual('HOME')}>
             <Text style={[styles.navText, telaAtual === 'HOME' && { color: CORES.cyan }]}>INÍCIO</Text>

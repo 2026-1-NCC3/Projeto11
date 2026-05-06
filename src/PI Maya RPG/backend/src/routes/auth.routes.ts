@@ -130,6 +130,83 @@ router.get('/me', authMiddleware, async (req: Request, res: Response) => {
 });
 
 /**
+ * POST /auth/register
+ * Body: { nome, email, senha, telefone? }
+ * Cria um novo usuário com role 'paciente' e registro na tabela pacientes.
+ * Retorna: { access_token, user } (auto-login após cadastro)
+ */
+router.post('/register', async (req: Request, res: Response) => {
+  try {
+    const { nome, email, senha, telefone } = req.body;
+
+    if (!nome || !email || !senha) {
+      res.status(400).json({ error: 'Nome, email e senha são obrigatórios' });
+      return;
+    }
+
+    if (senha.length < 6) {
+      res.status(400).json({ error: 'A senha deve ter pelo menos 6 caracteres' });
+      return;
+    }
+
+    // Verificar se email já existe
+    const existente = await query(
+      'SELECT id FROM usuarios WHERE email = $1',
+      [email.toLowerCase().trim()]
+    );
+
+    if (existente.rows.length > 0) {
+      res.status(409).json({ error: 'Este email já está cadastrado' });
+      return;
+    }
+
+    // Hash da senha
+    const senha_hash = await bcrypt.hash(senha, 10);
+
+    // Criar usuário
+    const userResult = await query(`
+      INSERT INTO usuarios (nome, email, senha_hash, role, telefone)
+      VALUES ($1, $2, $3, 'paciente', $4)
+      RETURNING id, nome, email, role, telefone, avatar_url
+    `, [nome.trim(), email.toLowerCase().trim(), senha_hash, telefone || null]);
+
+    const usuario = userResult.rows[0];
+
+    // Criar registro de paciente
+    const pacResult = await query(`
+      INSERT INTO pacientes (usuario_id)
+      VALUES ($1)
+      RETURNING id
+    `, [usuario.id]);
+
+    const paciente_id = pacResult.rows[0].id;
+
+    // Gerar token (auto-login)
+    const token = generateToken({
+      userId: usuario.id,
+      email: usuario.email,
+      role: usuario.role,
+    });
+
+    res.status(201).json({
+      access_token: token,
+      user: {
+        id: usuario.id,
+        nome: usuario.nome,
+        email: usuario.email,
+        role: usuario.role,
+        telefone: usuario.telefone,
+        avatar_url: usuario.avatar_url,
+        paciente_id,
+      },
+    });
+  } catch (err) {
+    console.error('[AUTH REGISTER]', err);
+    res.status(500).json({ error: 'Erro ao realizar cadastro' });
+  }
+});
+
+/**
  * POST /auth/logout
  * (Stateless — apenas confirma ao cliente)
  */

@@ -27,6 +27,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "4f32111c-3ed8-460a-855c-bb332f0e6b92"
+      }
+    },
+    "owner": "luciovhc"
   }
 }

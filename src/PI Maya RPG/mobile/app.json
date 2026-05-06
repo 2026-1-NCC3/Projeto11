@@ -1,37 +1,32 @@
 {
   "expo": {
-    "name": "Maya RPG",
-    "slug": "maya-rpg-mobile",
+    "name": "MAYA App",
+    "slug": "maya-app-paciente",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "dark",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#0c1929"
+      "backgroundColor": "#F5F7FA"
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.mayarpg.mobile"
+      "bundleIdentifier": "com.yamamoto.mayaapp"
     },
     "android": {
-      "package": "com.mayarpg.mobile",
       "adaptiveIcon": {
-        "backgroundColor": "#0c1929",
         "foregroundImage": "./assets/android-icon-foreground.png",
         "backgroundImage": "./assets/android-icon-background.png",
-        "monochromeImage": "./assets/android-icon-monochrome.png"
+        "monochromeImage": "./assets/android-icon-monochrome.png",
+        "backgroundColor": "#F5F7FA"
       },
-      "predictiveBackGestureEnabled": false
+      "package": "com.yamamoto.mayaapp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "692f7f04-9a8d-4961-bbb4-b207d8eade92"
-      }
     }
   }
 }

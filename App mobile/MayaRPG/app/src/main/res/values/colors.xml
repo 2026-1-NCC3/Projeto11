@@ -1,0 +1,38 @@
+
+<!-- ARQUIVO: res/values/colors.xml -->
+<resources>
+    <!-- Cores principais da marca -->
+    <color name="maya_primary">#3DC8D8</color>   <!-- Ciano turquesa -->
+    <color name="maya_secondary">#E8705A</color> <!-- Coral -->
+
+    <!-- Cores secundárias -->
+    <color name="maya_beige">#E8DCC8</color>
+    <color name="maya_brown">#7A4A2A</color>
+    <color name="maya_navy">#1A3A5C</color>
+
+    <!-- Tons de interface -->
+    <color name="maya_dark">#1A2E3A</color>
+    <color name="maya_dark_mid">#2C4A5A</color>
+    <color name="maya_background">#F4F7F9</color>
+    <color name="maya_surface">#FFFFFF</color>
+    <color name="maya_border">#E2EAF0</color>
+
+    <!-- Texto -->
+    <color name="maya_text_primary">#1A2E3A</color>
+    <color name="maya_text_secondary">#6B8499</color>
+    <color name="maya_text_light">#A0B4C0</color>
+
+    <!-- Status -->
+    <color name="maya_success">#2ECC71</color>
+    <color name="maya_warning">#F39C12</color>
+    <color name="maya_danger">#E74C3C</color>
+
+    <!-- Transparências -->
+    <color name="maya_primary_light">#1F3DC8D8</color>
+    <color name="maya_secondary_light">#1FE8705A</color>
+    <color name="maya_demo_banner">#FFCC00</color>
+
+    <!-- Padrão Android -->
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+</resources>

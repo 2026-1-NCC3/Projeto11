@@ -11,9 +11,10 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import com.maya.rpg.R;
 import com.maya.rpg.database.DatabaseHelper;
-import com.maya.rpg.models.Plan;
+import com.maya.rpg.models.Exercise;
 import com.maya.rpg.utils.SessionManager;
 import java.util.Calendar;
+import java.util.List;
 import android.content.Intent;
 import android.widget.Button;
 
@@ -39,18 +40,25 @@ public class HomeFragment extends Fragment {
                 ? session.getLoggedUser().getFirstName() : "Paciente";
         tvGreeting.setText(getGreeting() + ", " + firstName);
 
+        // Progresso semanal usando pacienteId
+        String pacienteId = session.getPacienteId();
+        if (pacienteId == null || pacienteId.isEmpty()) {
+            pacienteId = session.getUserId();
+        }
+
         TextView tvProgress = view.findViewById(R.id.tv_weekly_progress);
-        int progress = db.getWeeklyProgress(session.getUserId());
+        int progress = db.getWeeklyProgress(pacienteId);
         tvProgress.setText(progress + " / 3 sessões esta semana");
 
         ProgressBar pbWeekly = view.findViewById(R.id.pb_weekly);
         pbWeekly.setMax(3);
         pbWeekly.setProgress(Math.min(progress, 3));
 
+        // Nome do plano — mostra quantidade de exercícios prescritos
         TextView tvPlan = view.findViewById(R.id.tv_plan_name);
-        Plan activePlan = db.getActivePlan(session.getUserId());
-        if (activePlan != null) {
-            tvPlan.setText(activePlan.getTitle());
+        List<Exercise> exercises = db.getExercisesByUser(pacienteId);
+        if (!exercises.isEmpty()) {
+            tvPlan.setText(exercises.size() + " exercícios prescritos");
         } else {
             tvPlan.setText("Nenhum plano ativo");
         }

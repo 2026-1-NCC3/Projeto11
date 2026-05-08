@@ -4,7 +4,6 @@ package com.maya.rpg.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -49,7 +48,14 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ViewHo
             holder.tvRest.setVisibility(View.VISIBLE);
             holder.tvRest.setText("Descanso: " + ex.getRestSeconds() + "s");
         } else {
-            holder.tvRest.setVisibility(View.GONE);
+            // Mostra frequência se disponível
+            String freq = ex.getFrequencia();
+            if (freq != null && !freq.isEmpty()) {
+                holder.tvRest.setVisibility(View.VISIBLE);
+                holder.tvRest.setText(freq);
+            } else {
+                holder.tvRest.setVisibility(View.GONE);
+            }
         }
 
         // Clique no card abre ExerciseDetailActivity
@@ -72,4 +78,3 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ViewHo
         }
     }
 }
-

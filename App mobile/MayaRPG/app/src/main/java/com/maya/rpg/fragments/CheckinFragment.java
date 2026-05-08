@@ -18,25 +18,23 @@ import androidx.fragment.app.Fragment;
 import com.maya.rpg.R;
 import com.maya.rpg.database.DatabaseHelper;
 import com.maya.rpg.models.Checkin;
-import com.maya.rpg.models.Plan;
+import com.maya.rpg.models.Exercise;
 import com.maya.rpg.network.ApiClient;
 import com.maya.rpg.utils.SessionManager;
+import java.util.ArrayList;
+import java.util.List;
 
+/**
+ * Fragment de check-in diário.
+ * Carrega exercícios dinamicamente das prescrições do paciente
+ * em vez de usar uma lista hardcoded.
+ */
 public class CheckinFragment extends Fragment {
 
-    private static final String[] EXERCISE_NAMES = {
-            "Sessão completa (todos os exercícios)",
-            "01. Postura da Montanha",
-            "02. Alongamento da Cadeia Posterior",
-            "03. Postura do Esquiador",
-            "04. Abertura do Tórax",
-            "05. Fechamento da Cadeia Anterior",
-            "06. Autoelongação Sentado",
-            "07. Postura da Rã no Chão",
-            "08. Respiração Diafragmática",
-            "09. Postura do Corredor",
-            "10. Mobilização Cervical"
-    };
+    private List<Exercise> exerciseList = new ArrayList<>();
+    private String[] exerciseNames;
+    private SessionManager session;
+    private DatabaseHelper db;
 
     @Nullable
     @Override
@@ -50,14 +48,33 @@ public class CheckinFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        SessionManager session = new SessionManager(requireContext());
-        DatabaseHelper db = DatabaseHelper.getInstance(requireContext());
+        session = new SessionManager(requireContext());
+        db = DatabaseHelper.getInstance(requireContext());
+
+        // Carrega exercícios para popular o spinner
+        String pacienteId = session.getPacienteId();
+        if (pacienteId == null || pacienteId.isEmpty()) {
+            pacienteId = session.getUserId();
+        }
+
+        exerciseList = db.getExercisesByUser(pacienteId);
+        setupUI(view);
+    }
+
+    private void setupUI(View view) {
+        // Prepara nomes dos exercícios para o spinner
+        List<String> names = new ArrayList<>();
+        names.add("Sessão completa (todos os exercícios)");
+        for (int i = 0; i < exerciseList.size(); i++) {
+            names.add(String.format("%02d. %s", i + 1, exerciseList.get(i).getName()));
+        }
+        exerciseNames = names.toArray(new String[0]);
 
         Spinner spinnerExercise = view.findViewById(R.id.spinner_exercise);
         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(
                 requireContext(),
                 android.R.layout.simple_spinner_dropdown_item,
-                EXERCISE_NAMES);
+                exerciseNames);
         spinnerExercise.setAdapter(spinnerAdapter);
 
         SeekBar seekBarPain = view.findViewById(R.id.seekbar_pain);
@@ -94,18 +111,33 @@ public class CheckinFragment extends Fragment {
             String notes = etNotes.getText().toString().trim();
             int exIndex = spinnerExercise.getSelectedItemPosition();
 
-            Plan plan = db.getActivePlan(session.getUserId());
-            if (plan == null) {
-                Toast.makeText(requireContext(), "Nenhum plano ativo.", Toast.LENGTH_SHORT).show();
-                return;
+            String pacienteId = session.getPacienteId();
+            if (pacienteId == null || pacienteId.isEmpty()) {
+                pacienteId = session.getUserId();
             }
 
-            Checkin checkin = new Checkin(session.getUserId(), plan.getId(),
-                    exIndex, completion, painLevel, notes);
+            // Determinar prescricaoId do exercício selecionado
+            String prescricaoId = null;
+            String exerciseName = "Sessão completa";
+            if (exIndex > 0 && exIndex <= exerciseList.size()) {
+                Exercise selectedEx = exerciseList.get(exIndex - 1);
+                prescricaoId = selectedEx.getId(); // ID da prescrição
+                exerciseName = selectedEx.getName();
+            } else if (!exerciseList.isEmpty()) {
+                // "Sessão completa" → usa primeira prescrição como referência
+                prescricaoId = exerciseList.get(0).getId();
+            }
+
+            // Salvar localmente
+            Checkin checkin = new Checkin(pacienteId, prescricaoId,
+                    completion, painLevel, notes);
+            checkin.setExerciseName(exerciseName);
             db.saveCheckin(checkin);
 
-            if (!session.isDemoMode()) {
-                ApiClient.postCheckin(plan.getId(), exIndex, completion,
+            // Sincronizar com API se online
+            if (!session.isDemoMode() && prescricaoId != null) {
+                boolean executado = (completion == Checkin.COMPLETED);
+                ApiClient.postCheckin(pacienteId, prescricaoId, executado,
                         painLevel, notes, session.getToken(),
                         new ApiClient.ApiCallback<Boolean>() {
                             @Override public void onSuccess(Boolean result) {}

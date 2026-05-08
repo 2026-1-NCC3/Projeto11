@@ -80,21 +80,28 @@ public class LoginActivity extends AppCompatActivity {
         ApiClient.login(email, password, new ApiClient.ApiCallback<User>() {
             @Override
             public void onSuccess(User apiUser) {
+                // Salva/atualiza no SQLite local
                 User localUser = dbHelper.getUserByEmail(email);
                 if (localUser == null) {
-                    long id = dbHelper.createUser(
-                            apiUser.getName(), email, HashUtils.sha256(password));
-                    apiUser.setId((int) id);
+                    dbHelper.createUser(
+                            apiUser.getId(), apiUser.getName(), email,
+                            HashUtils.sha256(password), apiUser.getRole(),
+                            apiUser.getPacienteId());
                 } else {
-                    apiUser.setId(localUser.getId());
                     apiUser.setLgpdAccepted(localUser.isLgpdAccepted());
                 }
-                dbHelper.seedDemoData(apiUser.getId());
+
+                // Seed de dados demo para offline
+                String userId = apiUser.getPacienteId() != null
+                        ? apiUser.getPacienteId() : apiUser.getId();
+                dbHelper.seedDemoData(userId);
+
                 proceedAfterLogin(apiUser);
             }
 
             @Override
             public void onError(String error) {
+                // Fallback para login local
                 loginLocal(email, password);
             }
         });
@@ -108,12 +115,19 @@ public class LoginActivity extends AppCompatActivity {
 
             if (c.moveToFirst()) {
                 User localUser = new User();
-                localUser.setId(c.getInt(c.getColumnIndexOrThrow("id")));
+                localUser.setId(c.getString(c.getColumnIndexOrThrow("id")));
                 localUser.setName(c.getString(c.getColumnIndexOrThrow("name")));
                 localUser.setEmail(c.getString(c.getColumnIndexOrThrow("email")));
+                int roleIdx = c.getColumnIndex("role");
+                if (roleIdx >= 0) localUser.setRole(c.getString(roleIdx));
+                int pacIdx = c.getColumnIndex("paciente_id");
+                if (pacIdx >= 0) localUser.setPacienteId(c.getString(pacIdx));
                 localUser.setLgpdAccepted(c.getInt(c.getColumnIndexOrThrow("lgpd_accepted")) == 1);
                 c.close();
-                dbHelper.seedDemoData(localUser.getId());
+
+                String userId = localUser.getPacienteId() != null
+                        ? localUser.getPacienteId() : localUser.getId();
+                dbHelper.seedDemoData(userId);
                 proceedAfterLogin(localUser);
             } else {
                 c.close();

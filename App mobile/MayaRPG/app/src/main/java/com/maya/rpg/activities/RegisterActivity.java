@@ -60,7 +60,51 @@ public class RegisterActivity extends AppCompatActivity {
         progressBar.setVisibility(View.VISIBLE);
         btnRegister.setEnabled(false);
 
-        registerLocal(name, email, password);
+        if (sessionManager.isDemoMode()) {
+            // Sem API → registro apenas local
+            registerLocal(name, email, password);
+        } else {
+            // Tenta registrar na API primeiro
+            registerWithApi(name, email, password);
+        }
+    }
+
+    private void registerWithApi(String name, String email, String password) {
+        ApiClient.register(name, email, password, new ApiClient.ApiCallback<User>() {
+            @Override
+            public void onSuccess(User apiUser) {
+                // Salva localmente também
+                dbHelper.createUser(
+                        apiUser.getId(), apiUser.getName(), email,
+                        HashUtils.sha256(password), apiUser.getRole(),
+                        apiUser.getPacienteId());
+
+                // Auto-login após cadastro na API
+                runOnUiThread(() -> {
+                    progressBar.setVisibility(View.GONE);
+                    btnRegister.setEnabled(true);
+
+                    sessionManager.saveSession(apiUser);
+                    Toast.makeText(RegisterActivity.this,
+                            "Conta criada com sucesso!", Toast.LENGTH_SHORT).show();
+
+                    // Vai direto para LGPD (primeiro acesso)
+                    Intent intent = new Intent(RegisterActivity.this, LgpdActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                    finish();
+                });
+            }
+
+            @Override
+            public void onError(String error) {
+                runOnUiThread(() -> {
+                    progressBar.setVisibility(View.GONE);
+                    btnRegister.setEnabled(true);
+                    Toast.makeText(RegisterActivity.this, error, Toast.LENGTH_LONG).show();
+                });
+            }
+        });
     }
 
     private void registerLocal(String name, String email, String password) {

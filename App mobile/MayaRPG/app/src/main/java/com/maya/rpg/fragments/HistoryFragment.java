@@ -25,6 +25,7 @@ import com.maya.rpg.R;
 import com.maya.rpg.adapters.CheckinAdapter;
 import com.maya.rpg.database.DatabaseHelper;
 import com.maya.rpg.models.Checkin;
+import com.maya.rpg.network.ApiClient;
 import com.maya.rpg.utils.SessionManager;
 import java.util.ArrayList;
 import java.util.List;
@@ -55,13 +56,55 @@ public class HistoryFragment extends Fragment implements CheckinAdapter.OnChecki
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
         lineChart = view.findViewById(R.id.line_chart);
         setupChart();
-        loadHistory();
+
+        String pacienteId = session.getPacienteId();
+        if (pacienteId == null || pacienteId.isEmpty()) {
+            pacienteId = session.getUserId();
+        }
+
+        // Tenta carregar da API se online
+        if (!session.isDemoMode() && pacienteId != null && !pacienteId.isEmpty()) {
+            final String pid = pacienteId;
+            ApiClient.getCheckinHistory(pacienteId, session.getToken(),
+                    new ApiClient.ApiCallback<List<Checkin>>() {
+                        @Override
+                        public void onSuccess(List<Checkin> checkins) {
+                            if (isAdded()) {
+                                requireActivity().runOnUiThread(() -> {
+                                    checkinList = checkins;
+                                    displayHistory();
+                                });
+                            }
+                        }
+                        @Override
+                        public void onError(String error) {
+                            loadLocalHistory(pid);
+                        }
+                    });
+        } else {
+            loadLocalHistory(pacienteId);
+        }
+    }
+
+    private void loadLocalHistory(String pacienteId) {
+        checkinList = db.getCheckinHistory(pacienteId);
+        if (isAdded()) {
+            requireActivity().runOnUiThread(this::displayHistory);
+        }
     }
 
     private void loadHistory() {
-        checkinList = db.getCheckinHistory(session.getUserId());
+        String pacienteId = session.getPacienteId();
+        if (pacienteId == null || pacienteId.isEmpty()) {
+            pacienteId = session.getUserId();
+        }
+        checkinList = db.getCheckinHistory(pacienteId);
+        displayHistory();
+    }
+
+    private void displayHistory() {
         View root = requireView();
-        if (checkinList.isEmpty()) {
+        if (checkinList == null || checkinList.isEmpty()) {
             root.findViewById(R.id.tv_empty).setVisibility(View.VISIBLE);
             recyclerView.setVisibility(View.GONE);
             lineChart.setVisibility(View.GONE);

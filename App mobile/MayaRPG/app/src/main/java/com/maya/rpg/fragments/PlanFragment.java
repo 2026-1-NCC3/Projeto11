@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -15,14 +16,19 @@ import com.maya.rpg.activities.ExerciseDetailActivity;
 import com.maya.rpg.adapters.ExerciseAdapter;
 import com.maya.rpg.database.DatabaseHelper;
 import com.maya.rpg.models.Exercise;
-import com.maya.rpg.models.Plan;
 import com.maya.rpg.network.ApiClient;
 import com.maya.rpg.utils.SessionManager;
 import java.util.List;
 
+/**
+ * Fragment que exibe a lista de exercícios prescritos ao paciente.
+ * Busca da API (GET /prescricoes/paciente/:pacienteId) quando online,
+ * e do SQLite local quando offline.
+ */
 public class PlanFragment extends Fragment implements ExerciseAdapter.OnExerciseClickListener {
 
     private RecyclerView recyclerView;
+    private TextView tvEmpty;
     private SessionManager session;
     private DatabaseHelper db;
 
@@ -41,47 +47,72 @@ public class PlanFragment extends Fragment implements ExerciseAdapter.OnExercise
         db = DatabaseHelper.getInstance(requireContext());
         recyclerView = view.findViewById(R.id.rv_exercises);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+
+        // Tenta encontrar um TextView de "lista vazia" no layout (pode não existir)
+        tvEmpty = view.findViewById(R.id.tv_empty_plan);
+
         loadExercises();
     }
 
     private void loadExercises() {
-        Plan plan = db.getActivePlan(session.getUserId());
-        if (plan == null) return;
-        if (!session.isDemoMode()) {
-            ApiClient.getExercises(plan.getId(), session.getToken(),
+        String pacienteId = session.getPacienteId();
+        if (pacienteId == null || pacienteId.isEmpty()) {
+            pacienteId = session.getUserId();
+        }
+
+        if (!session.isDemoMode() && pacienteId != null && !pacienteId.isEmpty()) {
+            final String pid = pacienteId;
+            ApiClient.getExercises(pacienteId, session.getToken(),
                     new ApiClient.ApiCallback<List<Exercise>>() {
                         @Override
                         public void onSuccess(List<Exercise> exercises) {
-                            requireActivity().runOnUiThread(() -> showExercises(exercises));
+                            // Salva no cache local
+                            db.saveExercisesForUser(pid, exercises);
+                            if (isAdded()) {
+                                requireActivity().runOnUiThread(() -> showExercises(exercises));
+                            }
                         }
                         @Override
                         public void onError(String error) {
-                            loadLocalExercises(plan.getId());
+                            loadLocalExercises(pid);
                         }
                     });
         } else {
-            loadLocalExercises(plan.getId());
+            loadLocalExercises(pacienteId != null ? pacienteId : session.getUserId());
         }
     }
 
-    private void loadLocalExercises(int planId) {
-        List<Exercise> exercises = db.getExercisesByPlan(planId);
-        requireActivity().runOnUiThread(() -> showExercises(exercises));
+    private void loadLocalExercises(String userId) {
+        List<Exercise> exercises = db.getExercisesByUser(userId);
+        if (isAdded()) {
+            requireActivity().runOnUiThread(() -> showExercises(exercises));
+        }
     }
 
     private void showExercises(List<Exercise> exercises) {
-        ExerciseAdapter adapter = new ExerciseAdapter(exercises, this);
-        recyclerView.setAdapter(adapter);
+        if (exercises.isEmpty()) {
+            recyclerView.setVisibility(View.GONE);
+            if (tvEmpty != null) tvEmpty.setVisibility(View.VISIBLE);
+        } else {
+            recyclerView.setVisibility(View.VISIBLE);
+            if (tvEmpty != null) tvEmpty.setVisibility(View.GONE);
+            ExerciseAdapter adapter = new ExerciseAdapter(exercises, this);
+            recyclerView.setAdapter(adapter);
+        }
     }
 
     @Override
     public void onExerciseClick(Exercise exercise) {
         Intent intent = new Intent(requireContext(), ExerciseDetailActivity.class);
         intent.putExtra(ExerciseDetailActivity.EXTRA_EXERCISE_NAME, exercise.getName());
-        intent.putExtra(ExerciseDetailActivity.EXTRA_EXERCISE_DESCRIPTION, exercise.getDescription());
-        intent.putExtra(ExerciseDetailActivity.EXTRA_EXERCISE_DURATION, exercise.getFormattedDuration());
-        intent.putExtra(ExerciseDetailActivity.EXTRA_EXERCISE_REST, String.valueOf(exercise.getRestSeconds()));
-        intent.putExtra(ExerciseDetailActivity.EXTRA_EXERCISE_VIDEO_URL, exercise.getVideoUrl());
+        intent.putExtra(ExerciseDetailActivity.EXTRA_EXERCISE_DESCRIPTION,
+                exercise.getDescription());
+        intent.putExtra(ExerciseDetailActivity.EXTRA_EXERCISE_DURATION,
+                exercise.getFormattedDuration());
+        intent.putExtra(ExerciseDetailActivity.EXTRA_EXERCISE_REST,
+                String.valueOf(exercise.getRestSeconds()));
+        intent.putExtra(ExerciseDetailActivity.EXTRA_EXERCISE_VIDEO_URL,
+                exercise.getVideoUrl());
         startActivity(intent);
     }
 }

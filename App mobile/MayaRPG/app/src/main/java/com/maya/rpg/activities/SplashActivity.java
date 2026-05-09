@@ -37,7 +37,7 @@ public class SplashActivity extends AppCompatActivity {
         executor.submit(() -> {
             boolean apiAvailable = false;
             try {
-                apiAvailable = future.get(20, TimeUnit.SECONDS); // Render cold start ~15s
+                apiAvailable = future.get(45, TimeUnit.SECONDS); // Render cold start até 45s
             } catch (TimeoutException e) {
                 future.cancel(true);
             } catch (Exception e) {

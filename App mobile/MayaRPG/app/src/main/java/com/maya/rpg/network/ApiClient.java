@@ -37,9 +37,9 @@ public class ApiClient {
     private static final MediaType JSON_TYPE = MediaType.get("application/json; charset=utf-8");
 
     private static final OkHttpClient client = new OkHttpClient.Builder()
-            .connectTimeout(15, TimeUnit.SECONDS)   // Render cold start pode levar ~15s
-            .readTimeout(30, TimeUnit.SECONDS)       // Margem para queries lentas
-            .writeTimeout(10, TimeUnit.SECONDS)
+            .connectTimeout(60, TimeUnit.SECONDS)   // Render cold start pode levar até 50s
+            .readTimeout(60, TimeUnit.SECONDS)       // Margem longa para requests durante cold start
+            .writeTimeout(30, TimeUnit.SECONDS)
             .build();
 
     // ── Callback genérico ───────────────────────────────────────

@@ -69,11 +69,8 @@ public class LoginActivity extends AppCompatActivity {
 
         setLoading(true);
 
-        if (sessionManager.isDemoMode()) {
-            loginLocal(email, password);
-        } else {
-            loginWithApi(email, password);
-        }
+        // Sempre tenta a API primeiro. Se falhar (ex: sem net), o onError faz fallback pro loginLocal.
+        loginWithApi(email, password);
     }
 
     private void loginWithApi(String email, String password) {

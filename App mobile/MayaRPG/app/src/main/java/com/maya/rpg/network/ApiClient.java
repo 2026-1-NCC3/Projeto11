@@ -20,23 +20,26 @@ import okhttp3.Response;
 /**
  * Cliente HTTP para comunicação com o backend Maya RPG.
  *
- * Backend real:
- *   - Porta 8000 (Express/Node.js)
+ * Backend (Render):
+ *   - URL: https://maya-rpg-api.onrender.com
  *   - Rotas SEM prefixo /api: /auth/login, /prescricoes/paciente/:id, etc.
  *   - IDs são UUID (String)
  *   - Campos em português: nome, senha, executado, nivel_dor, etc.
+ *
+ * NOTA: Render free tier tem cold start (~15s na primeira requisição).
+ *       Timeouts configurados com margem para isso.
  */
 public class ApiClient {
 
-    // 10.0.2.2 = localhost do host visto pelo emulador Android
-    public static final String API_BASE_URL = "http://10.0.2.2:8000";
+    // URL de produção no Render
+    public static final String API_BASE_URL = "https://maya-rpg-api.onrender.com";
     private static final String TAG = "ApiClient";
     private static final MediaType JSON_TYPE = MediaType.get("application/json; charset=utf-8");
 
     private static final OkHttpClient client = new OkHttpClient.Builder()
-            .connectTimeout(5, TimeUnit.SECONDS)
-            .readTimeout(10, TimeUnit.SECONDS)
-            .writeTimeout(5, TimeUnit.SECONDS)
+            .connectTimeout(15, TimeUnit.SECONDS)   // Render cold start pode levar ~15s
+            .readTimeout(30, TimeUnit.SECONDS)       // Margem para queries lentas
+            .writeTimeout(10, TimeUnit.SECONDS)
             .build();
 
     // ── Callback genérico ───────────────────────────────────────

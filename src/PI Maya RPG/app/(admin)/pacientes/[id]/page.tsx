@@ -5,9 +5,9 @@ import { useRouter } from 'next/navigation';
 import { Card, CardHeader } from '@/components/shared/Card';
 import { Button } from '@/components/shared/Button';
 import { Input } from '@/components/shared/Input';
-import { buscarPaciente, listarPrescricoes, listarExercicios, criarPrescricao } from '@/lib/api/client';
-import type { Paciente, Prescricao, Exercicio } from '@/lib/types';
-import { ArrowLeft, Plus } from 'lucide-react';
+import { buscarPaciente, listarPrescricoes, listarExercicios, criarPrescricao, listarCheckins } from '@/lib/api/client';
+import type { Paciente, Prescricao, Exercicio, Checkin } from '@/lib/types';
+import { ArrowLeft, Plus, CalendarCheck, Activity } from 'lucide-react';
 import Link from 'next/link';
 import { StatusBadge } from '@/components/shared/Badges';
 
@@ -16,6 +16,7 @@ export default function PacienteDetalhesPage({ params }: { params: { id: string 
   const [paciente, setPaciente] = useState<Paciente | null>(null);
   const [prescricoes, setPrescricoes] = useState<Prescricao[]>([]);
   const [exercicios, setExercicios] = useState<Exercicio[]>([]);
+  const [checkins, setCheckins] = useState<Checkin[]>([]);
   const [loading, setLoading] = useState(true);
   
   // Estado para o formulário de nova prescrição
@@ -33,14 +34,16 @@ export default function PacienteDetalhesPage({ params }: { params: { id: string 
   useEffect(() => {
     async function loadData() {
       try {
-        const [pacienteData, prescricoesData, exerciciosData] = await Promise.all([
+        const [pacienteData, prescricoesData, exerciciosData, checkinsData] = await Promise.all([
           buscarPaciente(params.id),
           listarPrescricoes(params.id),
-          listarExercicios()
+          listarExercicios(),
+          listarCheckins(params.id)
         ]);
         setPaciente(pacienteData);
         setPrescricoes(prescricoesData);
         setExercicios(exerciciosData);
+        setCheckins(checkinsData);
       } catch (err) {
         console.error(err);
       } finally {
@@ -171,6 +174,62 @@ export default function PacienteDetalhesPage({ params }: { params: { id: string 
                       <p className="text-xs text-gray-500 mt-1">
                         {p.series}x{p.repeticoes} {p.duracao_seg ? `| ${p.duracao_seg}s` : ''} | {p.frequencia}
                       </p>
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
+          </Card>
+
+          {/* Área de Check-ins Diários */}
+          <Card>
+            <div className="flex justify-between items-center p-5 pb-0 mb-4 border-b border-gray-100">
+              <h2 className="font-semibold text-lg flex items-center gap-2">
+                <CalendarCheck className="w-5 h-5 text-maya-teal" />
+                Histórico de Check-ins Diários ({checkins.length})
+              </h2>
+            </div>
+            
+            <div className="p-5 pt-2 space-y-3 max-h-96 overflow-y-auto">
+              {checkins.length === 0 ? (
+                <p className="text-gray-500 text-sm italic">Nenhum check-in registrado pelo paciente ainda.</p>
+              ) : (
+                checkins.map((chk: Checkin) => (
+                  <div key={chk.id} className="p-4 bg-gray-50 border border-gray-100 rounded-lg flex flex-col md:flex-row justify-between gap-4">
+                    <div className="flex-1">
+                      <div className="flex items-center gap-3 mb-2">
+                        <span className="text-sm font-medium text-maya-dark">
+                          {new Date(chk.created_at).toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', hour: '2-digit', minute: '2-digit' })}
+                        </span>
+                        {chk.nivel_dor && chk.nivel_dor >= 7 && (
+                          <span className="px-2 py-0.5 bg-red-100 text-red-700 text-xs rounded-full font-medium flex items-center gap-1">
+                            <Activity className="w-3 h-3" /> Dor Intensa
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-sm text-gray-800 font-medium mb-1">
+                        Exercício: {chk.exercicio_nome || 'Exercício ' + chk.prescricao_id.substring(0,4)}
+                      </p>
+                      <div className="flex gap-4 text-sm mt-1">
+                        <span className="text-gray-600">
+                          Status: <strong className={chk.executado ? 'text-green-600' : 'text-red-600'}>
+                            {chk.executado ? 'Executado' : 'Não Executado'}
+                          </strong>
+                        </span>
+                        {chk.nivel_dor !== undefined && (
+                          <span className="text-gray-600">
+                            Nível de Dor: <strong className={chk.nivel_dor > 6 ? 'text-red-500' : 'text-maya-teal'}>
+                              {chk.nivel_dor}/10
+                            </strong>
+                          </span>
+                        )}
+                      </div>
+                      
+                      {chk.observacoes && (
+                        <p className="text-sm text-gray-600 mt-3 italic bg-white p-3 rounded-md border border-gray-100 shadow-sm">
+                          "{chk.observacoes}"
+                        </p>
+                      )}
                     </div>
                   </div>
                 ))

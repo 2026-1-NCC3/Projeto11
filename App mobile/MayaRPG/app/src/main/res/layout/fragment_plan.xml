@@ -23,8 +23,19 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_exercises"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:padding="12dp"
         android:clipToPadding="false"/>
+
+    <TextView
+        android:id="@+id/tv_empty_plan"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="Nenhum exercício prescrito no momento."
+        android:textColor="@color/white"
+        android:visibility="gone"
+        android:padding="20dp"/>
 
 </LinearLayout>

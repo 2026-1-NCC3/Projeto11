@@ -65,9 +65,8 @@ Projeto11/
 │   └── MayaRPG/                
 │
 ├── Documentos/                 # Apresentações, Banners e Arquivos da Faculdade
-│   └── analise/                # Códigos em Python da matéria de Dados (Entrega 2)
-│
-├── POO/                        # Onde estão os Diagramas da disciplina de OO
+│   ├── Entrega 1/              # Entregáveis da primeira fase do projeto
+│   └── Entrega 2/              # Entregáveis da segunda fase do projeto
 │
 ├── src/PI Maya RPG/            # Pasta principal com Web e Backend juntos
 │   ├── app/                    # Telas do Painel Administrativo (feito com Next.js)

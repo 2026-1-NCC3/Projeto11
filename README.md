@@ -13,7 +13,7 @@
   <img src="https://github.com/user-attachments/assets/dcca1848-6658-4202-81a6-53a3d6ae1c44" width="450" height="450" alt="logo dev leaders" border="0">
 </p>
 
-## Proposta do Projeto (Status: Finalizado / MVP Concluído)
+## Proposta do Projeto
 
 A [Clínica Maya Yoshiko Yamamoto](https://mayayamamoto.com.br/) é especializada em **Reeducação Postural Global (RPG)**, técnica fisioterapêutica que trata desequilíbrios posturais de forma global e integrada. Atualmente, o acompanhamento dos pacientes ocorre de forma dispersa: por mensagens, registros não padronizados e controles manuais, o que dificulta a rastreabilidade dos prontuários, o planejamento de exercícios domiciliares e o monitoramento da evolução clínica.
 

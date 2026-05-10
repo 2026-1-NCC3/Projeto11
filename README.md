@@ -33,7 +33,8 @@ O projeto é estruturado em três frentes complementares:
 
 Os arquivos necessários para as avaliações das disciplinas estão separados nestas pastas:
 
-- **Desenvolvimento Mobile & PI:** Código-fonte disponível na pasta `./App Mobile`
+- **Desenvolvimento Mobile & PI:** Código-fonte disponível na pasta `./App Mobile`. 
+  - 📥 **Download do APK Instalável:** Você pode encontrar o arquivo para instalar direto no Android no caminho `./App Mobile/MayaRPG/app/build/outputs/apk/debug/app-debug.apk`
 
 ---
 
@@ -63,6 +64,7 @@ Projeto11/
 │
 ├── App Mobile/                 # O código do App Android (feito em Java)
 │   └── MayaRPG/                
+│       └── app/build/outputs/apk/debug/app-debug.apk  # O Arquivo Instalável do App
 │
 ├── Documentos/                 # Apresentações, Banners e Arquivos da Faculdade
 │   ├── Entrega 1/              # Entregáveis da primeira fase do projeto

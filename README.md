@@ -13,7 +13,7 @@
   <img src="https://github.com/user-attachments/assets/dcca1848-6658-4202-81a6-53a3d6ae1c44" width="450" height="450" alt="logo dev leaders" border="0">
 </p>
 
-## Resumo do Projeto (MVP Finalizado)
+## Descrição do Projeto
 
 A [Clínica Maya Yoshiko Yamamoto](https://mayayamamoto.com.br/) trabalha com **Reeducação Postural Global (RPG)**. Hoje em dia, o acompanhamento dos pacientes é feito de um jeito meio manual (mensagens no WhatsApp, anotações de papel, etc). Isso dificulta bastante na hora de achar o histórico de um paciente ou saber se ele realmente fez os exercícios em casa.
 

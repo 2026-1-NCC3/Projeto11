@@ -29,8 +29,6 @@ Para tentar resolver isso, o nosso grupo (DevLeaders) criou o **Sistema Maya Yam
 
 Os arquivos necessários para as avaliações das disciplinas estão separados nestas pastas:
 
-- **POO & Estrutura de Dados:** [Ver Diagrama de Classes UML](./POO)
-- **Análise Descritiva de Dados:** [Ver Script Python e Gráficos](./Documentos/analise)
 - **Desenvolvimento Mobile & PI:** Código-fonte disponível na pasta `./App Mobile`
 
 ---

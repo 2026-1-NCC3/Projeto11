@@ -25,7 +25,7 @@ Para tentar resolver isso, o nosso grupo (DevLeaders) criou o **Sistema Maya Yam
 
 ---
 
-## 🎯 Entregas Acadêmicas (Semestre 2026/1)
+## Entregas
 
 Os arquivos necessários para as avaliações das disciplinas estão separados nestas pastas:
 
@@ -35,7 +35,7 @@ Os arquivos necessários para as avaliações das disciplinas estão separados n
 
 ---
 
-##  O que o sistema faz? (Funcionalidades)
+##  Funcionalidades do Sistema
 
 **Módulo Admin (Fisioterapeuta - Web):**
 - Cadastro de pacientes (que já cria o usuário dele pro aplicativo na hora).

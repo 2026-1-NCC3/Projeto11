@@ -15,13 +15,17 @@
 
 ## Descrição do Projeto
 
-A [Clínica Maya Yoshiko Yamamoto](https://mayayamamoto.com.br/) trabalha com **Reeducação Postural Global (RPG)**. Hoje em dia, o acompanhamento dos pacientes é feito de um jeito meio manual (mensagens no WhatsApp, anotações de papel, etc). Isso dificulta bastante na hora de achar o histórico de um paciente ou saber se ele realmente fez os exercícios em casa.
+A [Clínica Maya Yoshiko Yamamoto](https://mayayamamoto.com.br/) trabalha com **Reeducação Postural Global (RPG)**. Antes, todo o acompanhamento da clínica era feito de um jeito bem manual: prontuários de papel que ocupavam espaço e podiam se perder, e o acompanhamento dos pacientes em casa era feito por mensagens perdidas no WhatsApp. Isso dificultava muito achar o histórico antigo de alguém ou saber se a pessoa realmente estava fazendo os exercícios recomendados.
 
-Para tentar resolver isso, o nosso grupo (DevLeaders) criou o **Sistema Maya Yamamoto RPG**. O projeto é dividido em três partes:
+Para resolver essa bagunça e modernizar a clínica, o nosso grupo (DevLeaders) criou o **Sistema Maya Yamamoto RPG**. Com ele, a gente conseguiu acabar com a dependência do papel. 
 
-- **Aplicativo Mobile (Paciente):** Um app Android onde o paciente entra e vê exatamente os exercícios que ele precisa fazer na semana. Ele também consegue registrar como foi o treino e se sentiu dor (Check-in).
-- **Módulo Web (Profissional/Admin):** Um painel web para a fisioterapeuta conseguir gerenciar a clínica toda. Por lá, ela cadastra novos pacientes, passa exercícios e acompanha as anotações do app.
-- **Backend (API) e Banco de Dados:** Onde a mágica acontece por trás dos panos. A API faz o app do celular e o site do painel conversarem entre si e salva tudo no banco de dados.
+O fluxo novo funciona assim: a fisioterapeuta abre o nosso Painel Web no computador da clínica e cadastra a ficha digital do paciente. Lá mesmo, ela já seleciona quais exercícios ele precisa fazer em casa. O paciente recebe a rotina de treino direto no celular dele. Quando ele termina de treinar, ele faz um "Check-in" no app, anotando se sentiu dor. Essa informação já bate na hora na tela da fisioterapeuta. Ou seja, ela consegue acompanhar a evolução de todo mundo à distância, com tudo salvo organizadinho na nuvem.
+
+O projeto é dividido em três partes pra fazer tudo isso acontecer:
+
+- **Aplicativo Mobile (Paciente):** Um app Android simples e direto ao ponto onde o paciente entra e vê sua lista de exercícios da semana. Ele também registra a dor e anotações do treino (Check-in).
+- **Módulo Web (Profissional/Admin):** Um painel web exclusivo para a fisioterapeuta gerenciar a clínica toda. Por lá, ela aposenta o papel e cadastra pacientes, passa exercícios e acompanha as dores que o pessoal reporta no app.
+- **Backend (API) e Banco de Dados:** Onde a mágica acontece por trás dos panos. A API faz o app do celular e o site da clínica conversarem entre si e guarda todos os dados dos prontuários de forma segura.
 
 ---
 

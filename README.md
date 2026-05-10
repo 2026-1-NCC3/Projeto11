@@ -33,19 +33,13 @@ O projeto é estruturado em três frentes complementares:
 
 Os arquivos necessários para as avaliações das disciplinas estão separados nestas pastas:
 
-<<<<<<< HEAD
-- **Desenvolvimento Mobile & PI:** Código-fonte disponível na pasta `./App Mobile`. 
-  - 📥 **Download do APK Instalável:** Você pode encontrar o arquivo para instalar direto no Android no caminho `./App Mobile/MayaRPG/app/build/outputs/apk/debug/app-debug.apk`
-- **Painel Web (Admin):** Sistema web oficial hospedado na nuvem.
-  - 🌐 **Acessar o Painel:** [https://maya-rpg-web-three.vercel.app](https://maya-rpg-web-three.vercel.app)
-  - 🔑 **Credenciais de Teste (Fisioterapeuta):** `admin@maya.com` / Senha: `123456`
-  - 🔑 **Credenciais de Teste (Paciente no App):** `carlos@email.com` / Senha: `123456`
-=======
-- **Desenvolvimento Mobile & PI:** Código-fonte disponível na pasta `./App Mobile`.
-  
-- **Download do APK Instalável:** Você pode encontrar o arquivo para instalar direto no Android no caminho `./App Mobile/MayaRPG/app/build/outputs/apk/debug/app-debug.apk`
->>>>>>> 4ce1b6f1b3150a8507ebfa1909aeb720b3513920
 
+- **Desenvolvimento Mobile & PI:** Código-fonte disponível na pasta `./App Mobile`. 
+  - **Download do APK Instalável:** Você pode encontrar o arquivo para instalar direto no Android no caminho `./App Mobile/MayaRPG/app/build/outputs/apk/debug/app-debug.apk`
+- **Painel Web (Admin):** Sistema web oficial hospedado na nuvem.
+  - **Acessar o Painel:** [https://maya-rpg-web-three.vercel.app](https://maya-rpg-web-three.vercel.app)
+  - **Credenciais de Teste (Fisioterapeuta):** `admin@maya.com` / Senha: `123456`
+    
 ---
 
 ##  Funcionalidades do Sistema

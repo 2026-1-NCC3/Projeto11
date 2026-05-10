@@ -117,7 +117,7 @@ FECAP - Fundação de Comércio Álvares Penteado © 2026 by
 
 <a href="https://github.com/GustavoDinizFroes/">Gustavo Diniz Froes</a>,
 
-<a href="https://github.com/Gustavo7122/">Gustavo Felizardo Pires</a>
+<a href="https://github.com/Gustavo7122/">Gustavo Felizardo Pires</a>,
 
 is licensed under
 <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>

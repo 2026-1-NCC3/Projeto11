@@ -140,7 +140,11 @@ public class CheckinFragment extends Fragment {
                 ApiClient.postCheckin(pacienteId, prescricaoId, executado,
                         painLevel, notes, session.getToken(),
                         new ApiClient.ApiCallback<Boolean>() {
-                            @Override public void onSuccess(Boolean result) {}
+                            @Override public void onSuccess(Boolean result) {
+                                if (result) {
+                                    db.markCheckinAsSynced(checkin.getId());
+                                }
+                            }
                             @Override public void onError(String error) {}
                         });
             }

@@ -291,6 +291,37 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return list;
     }
 
+    public List<Checkin> getUnsyncedCheckins() {
+        SQLiteDatabase db = getReadableDatabase();
+        List<Checkin> list = new ArrayList<>();
+        String query = "SELECT * FROM " + TABLE_CHECKINS + " WHERE synced = 0";
+        Cursor cursor = db.rawQuery(query, null);
+        while (cursor.moveToNext()) {
+            Checkin ch = new Checkin();
+            ch.setId(cursor.getString(cursor.getColumnIndexOrThrow("id")));
+            ch.setPacienteId(cursor.getString(cursor.getColumnIndexOrThrow("paciente_id")));
+            int presIdx = cursor.getColumnIndex("prescricao_id");
+            if (presIdx >= 0) ch.setPrescricaoId(cursor.getString(presIdx));
+            ch.setCompleted(cursor.getInt(cursor.getColumnIndexOrThrow("completed")));
+            ch.setPainLevel(cursor.getInt(cursor.getColumnIndexOrThrow("pain_level")));
+            ch.setNotes(cursor.getString(cursor.getColumnIndexOrThrow("notes")));
+            ch.setCheckinDate(cursor.getString(cursor.getColumnIndexOrThrow("checkin_date")));
+            ch.setSynced(false);
+            int exNameIdx = cursor.getColumnIndex("exercise_name");
+            if (exNameIdx >= 0) ch.setExerciseName(cursor.getString(exNameIdx));
+            list.add(ch);
+        }
+        cursor.close();
+        return list;
+    }
+
+    public void markCheckinAsSynced(String id) {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("synced", 1);
+        db.update(TABLE_CHECKINS, cv, "id = ?", new String[]{id});
+    }
+
     public int getWeeklyProgress(String pacienteId) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor c = db.rawQuery(

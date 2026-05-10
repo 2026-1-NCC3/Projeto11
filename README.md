@@ -15,17 +15,17 @@
 
 ## Descrição do Projeto
 
-A [Clínica Maya Yoshiko Yamamoto](https://mayayamamoto.com.br/) trabalha com **Reeducação Postural Global (RPG)**. Antes, todo o acompanhamento da clínica era feito de um jeito bem manual: prontuários de papel que ocupavam espaço e podiam se perder, e o acompanhamento dos pacientes em casa era feito por mensagens perdidas no WhatsApp. Isso dificultava muito achar o histórico antigo de alguém ou saber se a pessoa realmente estava fazendo os exercícios recomendados.
+A [Clínica Maya Yoshiko Yamamoto](https://mayayamamoto.com.br/) é especializada em **Reeducação Postural Global (RPG)**. Antes do nosso projeto, o acompanhamento dos pacientes era realizado de forma descentralizada e manual: os prontuários eram físicos e o monitoramento dos exercícios domiciliares era feito via mensagens de WhatsApp. Isso dificultava a rastreabilidade do histórico clínico e impedia uma análise precisa sobre a adesão do paciente ao tratamento.
 
-Para resolver essa bagunça e modernizar a clínica, o nosso grupo (DevLeaders) criou o **Sistema Maya Yamamoto RPG**. Com ele, a gente conseguiu acabar com a dependência do papel. 
+Para resolver esse gargalo operacional, o nosso grupo (DevLeaders) desenvolveu o **Sistema Maya Yamamoto RPG**, uma solução integrada que centraliza e digitaliza o fluxo da clínica.
 
-O fluxo novo funciona assim: a fisioterapeuta abre o nosso Painel Web no computador da clínica e cadastra a ficha digital do paciente. Lá mesmo, ela já seleciona quais exercícios ele precisa fazer em casa. O paciente recebe a rotina de treino direto no celular dele. Quando ele termina de treinar, ele faz um "Check-in" no app, anotando se sentiu dor. Essa informação já bate na hora na tela da fisioterapeuta. Ou seja, ela consegue acompanhar a evolução de todo mundo à distância, com tudo salvo organizadinho na nuvem.
+O fluxo modernizado funciona assim: através do Painel Web, a fisioterapeuta cadastra o paciente, abre o prontuário eletrônico e realiza a prescrição de exercícios. Imediatamente, essa rotina é disponibilizada no aplicativo Android do paciente. Após realizar os exercícios em casa, o paciente registra a execução e o nível de dor através de um "Check-in" diário no app. Esses dados são sincronizados com o servidor em nuvem e exibidos em tempo real no dashboard da fisioterapeuta, permitindo decisões clínicas baseadas em dados sem o uso de papel.
 
-O projeto é dividido em três partes pra fazer tudo isso acontecer:
+O projeto é estruturado em três frentes complementares:
 
-- **Aplicativo Mobile (Paciente):** Um app Android simples e direto ao ponto onde o paciente entra e vê sua lista de exercícios da semana. Ele também registra a dor e anotações do treino (Check-in).
-- **Módulo Web (Profissional/Admin):** Um painel web exclusivo para a fisioterapeuta gerenciar a clínica toda. Por lá, ela aposenta o papel e cadastra pacientes, passa exercícios e acompanha as dores que o pessoal reporta no app.
-- **Backend (API) e Banco de Dados:** Onde a mágica acontece por trás dos panos. A API faz o app do celular e o site da clínica conversarem entre si e guarda todos os dados dos prontuários de forma segura.
+- **Módulo Web (Admin/Profissional):** Um painel de gestão para a fisioterapeuta administrar prontuários, exercícios e acompanhar o feedback diário reportado via mobile.
+- **Aplicativo Mobile (Paciente):** Um app Android nativo focado em usabilidade, onde o paciente consulta suas prescrições, visualiza orientações e reporta seu progresso através de um sistema de Check-in Offline-First.
+- **Backend (API REST) e Banco de Dados:** Uma API que orquestra a comunicação segura (com JWT) entre o app e o painel web, persistindo os dados em um banco PostgreSQL na nuvem.
 
 ---
 
@@ -40,17 +40,19 @@ Os arquivos necessários para as avaliações das disciplinas estão separados n
 ##  Funcionalidades do Sistema
 
 **Módulo Admin (Fisioterapeuta - Web):**
-- Cadastro de pacientes (que já cria o usuário dele pro aplicativo na hora).
-- Tela para criar novos exercícios e montar uma biblioteca na clínica.
-- Passar prescrições de treino pro paciente.
-- Ver o histórico de "Check-ins" que o paciente mandou pelo celular, com um alerta vermelho chamativo caso ele informe um nível de dor 7 ou maior.
+- **Dashboard e Gestão:** Controle total de pacientes cadastrados e acesso rápido a dados recentes.
+- **Criação de Usuários:** Cadastro de novos pacientes integrado à geração automática de credenciais para o App.
+- **Biblioteca de Exercícios:** Cadastro de exercícios com descrições, nível de dificuldade, instruções e links para vídeos demonstrativos.
+- **Prescrição Individualizada:** Atribuição de treinos customizados para cada paciente (frequência, repetições, duração).
+- **Monitoramento em Tempo Real:** Visualização do histórico de Check-ins enviados pelo aplicativo.
+- **Sistema de Alertas Clínicos:** Notificação visual vermelha no painel caso o paciente reporte um nível de dor intenso (Nível >= 7).
 
 **Módulo Paciente (App Android):**
-- Tela de login básica.
-- Listagem dos exercícios que ele precisa fazer no dia.
-- **Check-in Offline:** O paciente anota se fez o exercício e a nota de dor. Fizemos uma funcionalidade que, se o paciente estiver sem internet na hora, o app salva no celular (SQLite) e manda pra nuvem sozinho depois quando o Wi-Fi voltar.
-- **Lembretes Diários:** O app vibra com uma notificação todo dia às 18:00 pra lembrar a pessoa de alongar.
-- Tela simples de aceite dos termos de privacidade (LGPD).
+- **Autenticação Segura:** Login utilizando tokens JWT.
+- **Visualização de Treinos:** Interface que lista de forma dinâmica os exercícios prescritos, incluindo vídeos e orientações.
+- **Check-in Offline-First:** Formulário diário onde o paciente reporta a conclusão do treino, nível de dor (0 a 10) e observações. Os dados são salvos localmente (SQLite) e, em caso de falta de internet, são sincronizados em *background* assim que a conexão é restaurada.
+- **Notificações Locais (AlarmManager):** Lembretes automáticos agendados localmente no sistema do celular para garantir o engajamento diário aos treinos.
+- **Conformidade LGPD:** Tela de consentimento de privacidade persistida no banco de dados.
 
 ---
 

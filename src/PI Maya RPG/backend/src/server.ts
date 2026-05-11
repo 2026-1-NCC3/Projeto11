@@ -37,12 +37,16 @@ app.use((req, res, next) => {
     const icon = status >= 400 ? '🔴' : '🟢';
     const timestamp = new Date().toLocaleTimeString('pt-BR');
     
-    console.log(`[${timestamp}] ${icon} ${req.method} ${req.originalUrl} - ${status} (${duration}ms)`);
+    const userAgent = req.headers['user-agent'] || '';
+    const isMobile = userAgent.includes('Dalvik') || userAgent.includes('Android') || userAgent.includes('iPhone');
+    const device = isMobile ? '📱 [APP]' : '💻 [WEB]';
+    
+    console.log(`${device} [${timestamp}] ${icon} ${req.method} ${req.originalUrl} - ${status} (${duration}ms)`);
     
     // Log especial para logins bem-sucedidos
     if (req.method === 'POST' && req.originalUrl === '/auth/login' && status === 200) {
       const email = req.body?.email || 'Usuário desconhecido';
-      console.log(`🔓 ACESSO: O paciente [${email}] acabou de entrar no sistema!`);
+      console.log(`🔓 ACESSO ${device}: O usuário [${email}] acabou de entrar!`);
     }
   });
   next();

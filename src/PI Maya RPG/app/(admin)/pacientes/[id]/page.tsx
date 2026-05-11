@@ -86,14 +86,21 @@ export default function PacienteDetalhesPage({ params }: { params: { id: string 
 
   return (
     <div className="space-y-6 max-w-4xl mx-auto">
-      <div className="flex items-center gap-4">
-        <Link href="/pacientes" className="p-2 hover:bg-gray-100 rounded-full transition-colors">
-          <ArrowLeft className="w-5 h-5 text-gray-500" />
-        </Link>
-        <div>
-          <h1 className="text-2xl font-display font-bold text-maya-teal-dark">{paciente.nome}</h1>
-          <p className="text-maya-gray-soft mt-1">{paciente.email} | {paciente.telefone}</p>
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="flex items-center gap-4">
+          <Link href="/pacientes" className="p-2 hover:bg-gray-100 rounded-full transition-colors">
+            <ArrowLeft className="w-5 h-5 text-gray-500" />
+          </Link>
+          <div>
+            <h1 className="text-2xl font-display font-bold text-maya-teal-dark">{paciente.nome}</h1>
+            <p className="text-maya-gray-soft mt-1">{paciente.email} | {paciente.telefone}</p>
+          </div>
         </div>
+        <Button variant="outline" asChild>
+          <Link href={`/avaliacoes?pacienteId=${paciente.id}`}>
+            Ver Avaliações
+          </Link>
+        </Button>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

@@ -52,7 +52,7 @@ export default function DashboardPage() {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h1 className="text-2xl font-display font-bold text-maya-teal-dark">
-            Olá, {user?.nome?.split(' ')[0]} 👋
+            Olá, {user?.nome?.split(' ')[0]}
           </h1>
           <p className="text-maya-gray-soft mt-1">
             Aqui está o resumo da clínica hoje.

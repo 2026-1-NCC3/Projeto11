@@ -1,7 +1,7 @@
 -- ============================================================
 -- Maya Yamamoto RPG — Dados de Teste (Seed)
 -- ============================================================
--- IMPORTANTE: Execute APÃ“S o init.sql
+-- IMPORTANTE: Execute APí“S o init.sql
 -- As senhas abaixo são hash bcrypt de '123456'
 -- ============================================================
 
@@ -9,7 +9,7 @@
 -- $2a$10$nP3ZzoUEURZpu4QhKvHYWOkJeL/fJDNs6Oj5RlvWC4vFbHlW83s62
 
 -- ============================================================
--- USUÃRIOS
+-- USUíRIOS
 -- ============================================================
 INSERT INTO usuarios (id, nome, email, senha_hash, role, telefone, cpf) VALUES
   -- Admin
@@ -78,7 +78,7 @@ ON CONFLICT (email) DO NOTHING;
 INSERT INTO pacientes (id, usuario_id, queixa_principal, historico_medico, objetivos, profissional_id) VALUES
   ('f0000000-0000-0000-0000-000000000001',
    'c0000000-0000-0000-0000-000000000001',
-   'Dor lombar crÃ´nica há 2 anos, piora ao ficar sentado por longos períodos',
+   'Dor lombar crônica há 2 anos, piora ao ficar sentado por longos períodos',
    'Hérnia de disco L4-L5 diagnosticada em 2024. Sem cirurgias.',
    'Reduzir dor lombar e melhorar postura no trabalho',
    'b0000000-0000-0000-0000-000000000001'),
@@ -107,7 +107,7 @@ INSERT INTO pacientes (id, usuario_id, queixa_principal, historico_medico, objet
 ON CONFLICT (usuario_id) DO NOTHING;
 
 -- ============================================================
--- EXERCÃCIOS
+-- EXERCíCIOS
 -- ============================================================
 INSERT INTO exercicios (id, nome, descricao, instrucoes, musculo_alvo, tipo, dificuldade, tags, criado_por) VALUES
   ('e0000000-0000-0000-0000-000000000001',
@@ -123,7 +123,7 @@ INSERT INTO exercicios (id, nome, descricao, instrucoes, musculo_alvo, tipo, dif
    'Fortalecimento de Core — Prancha',
    'Exercício isométrico para fortalecimento da musculatura do core.',
    '1. Posicione-se em quatro apoios.\n2. Estenda as pernas e apoie-se nos antebraços.\n3. Mantenha o corpo alinhado por 30 a 60 segundos.\n4. Descanse e repita.',
-   'Core / AbdÃ´men',
+   'Core / Abdômen',
    'fortalecimento', 'moderado',
    ARRAY['core', 'estabilidade', 'isometrico'],
    'b0000000-0000-0000-0000-000000000001'),
@@ -140,7 +140,7 @@ INSERT INTO exercicios (id, nome, descricao, instrucoes, musculo_alvo, tipo, dif
   ('e0000000-0000-0000-0000-000000000004',
    'Respiração Diafragmática',
    'Exercício respiratório fundamental para RPG, promove consciência corporal.',
-   '1. Deite-se de costas com os joelhos flexionados.\n2. Coloque uma mão no peito e outra no abdÃ´men.\n3. Inspire pelo nariz, expandindo o abdÃ´men.\n4. Expire lentamente pela boca.\n5. Repita por 2 minutos.',
+   '1. Deite-se de costas com os joelhos flexionados.\n2. Coloque uma mão no peito e outra no abdí´men.\n3. Inspire pelo nariz, expandindo o abdí´men.\n4. Expire lentamente pela boca.\n5. Repita por 2 minutos.',
    'Diafragma',
    'respiratorio', 'facil',
    ARRAY['respiracao', 'RPG', 'relaxamento'],
@@ -194,7 +194,7 @@ INSERT INTO exercicios (id, nome, descricao, instrucoes, musculo_alvo, tipo, dif
   ('e0000000-0000-0000-0000-000000000010',
    'Fortalecimento Escapular — Remada Baixa',
    'Fortalecimento da musculatura escapular para correção de protração de ombros.',
-   '1. Sentado, segure uma faixa elástica Ã  frente.\n2. Puxe os cotovelos para trás, apertando as escápulas.\n3. Segure 3 segundos.\n4. Retorne lentamente. Repita.',
+   '1. Sentado, segure uma faixa elástica í  frente.\n2. Puxe os cotovelos para trás, apertando as escápulas.\n3. Segure 3 segundos.\n4. Retorne lentamente. Repita.',
    'Rombóides / Trapézio médio',
    'fortalecimento', 'moderado',
    ARRAY['escapula', 'ombros', 'faixa elastica'],

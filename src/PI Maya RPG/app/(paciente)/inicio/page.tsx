@@ -32,7 +32,7 @@ export default function PacienteInicioPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-display font-bold text-maya-teal-dark">
-            Olá, {user?.nome?.split(' ')[0]} 👋
+            Olá, {user?.nome?.split(' ')[0]}
           </h1>
           <p className="text-maya-gray-soft mt-1">Como você está se sentindo hoje?</p>
         </div>

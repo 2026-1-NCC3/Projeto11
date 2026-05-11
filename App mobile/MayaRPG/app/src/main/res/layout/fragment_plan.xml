@@ -34,7 +34,7 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:text="Nenhum exercício prescrito no momento."
-        android:textColor="@color/white"
+        android:textColor="@color/maya_text_secondary"
         android:visibility="gone"
         android:padding="20dp"/>
 

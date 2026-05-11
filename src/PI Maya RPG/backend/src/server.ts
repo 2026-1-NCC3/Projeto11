@@ -41,7 +41,8 @@ app.use((req, res, next) => {
     
     // Log especial para logins bem-sucedidos
     if (req.method === 'POST' && req.originalUrl === '/auth/login' && status === 200) {
-      console.log(`🔓 ACESSO: Alguém acabou de entrar no sistema!`);
+      const email = req.body?.email || 'Usuário desconhecido';
+      console.log(`🔓 ACESSO: O paciente [${email}] acabou de entrar no sistema!`);
     }
   });
   next();

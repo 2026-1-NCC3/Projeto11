@@ -197,67 +197,9 @@ A divergência é pequena (~4 pontos), validando o uso de modelos probabilístic
 
 ---
 
-## 7. Roteiro do Banner
 
-> **📌 Formato sugerido:** A1 (60×84 cm), retrato, fundo claro com paleta verde-acinzentada (identidade Maya).
 
-```
-┌──────────────────────────────────────────────────────┐
-│  [LOGO MAYA RPG]      CLÍNICA MAYA · ENTREGA 2       │
-│                                                      │
-│  DA DISPERSÃO À DECISÃO:                             │
-│  Dados que evitam a evasão de pacientes              │
-│                                                      │
-│  ─────────────────────────────────────────────       │
-│                                                      │
-│  [GRÁFICO 1 — Barras de CV]                          │
-│   "5 de 6 variáveis com alta dispersão"              │
-│                                                      │
-│  [GRÁFICO 2 — Box Plot da Taxa de Adesão]            │
-│   "7 outliers escondem o real engajamento"           │
-│                                                      │
-│  [DESTAQUE NUMÉRICO GIGANTE]                         │
-│   100%                                               │
-│   dos pacientes com >3 faltas viram INATIVOS         │
-│                                                      │
-│  ─────────────────────────────────────────────       │
-│                                                      │
-│  AÇÕES PROPOSTAS                                     │
-│  ✓ Alerta automático na 3ª falta                     │
-│  ✓ Onboarding ativo no app (7 dias)                  │
-│  ✓ Planos padronizados por grau de severidade        │
-│                                                      │
-│  CONCLUSÃO                                           │
-│  Adesão real da clínica = 86,8% (sem outliers)       │
-│  Probabilidade de evasão é previsível e gerenciável  │
-│                                                      │
-│  [QR CODE → Planilha de Dados + Repositório GitHub]  │
-│                                                      │
-│  Equipe: Luiz Zaim · Lúcio Vecchio · Gustavo Froes   │
-│           · Gustavo Felizardo                        │
-└──────────────────────────────────────────────────────┘
-```
-
----
-
-## 8. Roteiro do Pitch (4 minutos)
-
-| Tempo | Bloco | Conteúdo | Quem fala |
-| :---: | :--- | :--- | :--- |
-| **0:00–0:30** | 🎯 Abertura | "Imagine descobrir, com 100% de certeza, qual paciente vai abandonar o tratamento — antes mesmo dele decidir abandonar. Foi exatamente isso que encontramos nos dados da Clínica Maya." | Integrante 1 |
-| **0:30–1:30** | 📊 Dispersão (CV) | Apresentar o gráfico de CV. Explicar que 5 de 6 variáveis têm alta dispersão. Destacar **Número de Faltas com CV de 123%** — desvio maior que a média. Posicionar isso como problema: sem padrão, sem previsibilidade. | Integrante 2 |
-| **1:30–2:30** | 📦 Outliers (Box Plot) | Mostrar o Box Plot da Taxa de Adesão. Os 7 outliers fazem a média parecer 75%, mas a clínica real tem **86,8% de adesão**. Os outliers não são erro — são **alertas clínicos**. CV cai de 30% para 8% após removê-los. | Integrante 3 |
-| **2:30–3:15** | 🎲 Probabilidade & Achado-chave | Apresentar a tabela de probabilidades. Destacar: P(Inativo \| Faltas>3) = **100%**. Cada paciente que falta mais de 3 vezes vira inativo. Isso é um **preditor**, não uma coincidência. | Integrante 4 |
-| **3:15–4:00** | 💡 Solução & Impacto Social | Apresentar as 3 ações: alerta na 3ª falta · onboarding 7 dias · planos padronizados. Conclusão: "Análise descritiva não é sobre olhar para o passado — é sobre **transformar dados em prevenção**. Cada paciente que não evade é uma saúde recuperada." | Integrante 1 |
-
-### Pontos de impacto para enfatizar
-- **Número-âncora:** "100% — todos os pacientes com >3 faltas viraram inativos."
-- **Gancho social:** A clínica atende dos 22 aos 63 anos. Evitar evasão = continuidade do cuidado em saúde para idosos, adultos em reabilitação, jovens com lesões posturais.
-- **Visão de produto:** Os achados não ficam no papel — viram **regras de negócio do aplicativo** (alertas, dashboards, fluxos).
-
----
-
-## 9. Conclusão Geral
+## 7. Conclusão Geral
 
 A análise de dispersão revelou que a base de pacientes da Clínica Maya é **heterogênea por natureza** (alto CV em 5 de 6 variáveis), mas essa heterogeneidade **não é aleatória**: tem padrão, tem causa e, sobretudo, **tem previsibilidade**.
 
@@ -268,12 +210,3 @@ O achado de maior valor clínico veio da análise probabilística: **a probabili
 Em resumo, as medidas de dispersão e probabilidade transformaram dados brutos em **três decisões acionáveis** para a Dra. Maya: monitorar faltas em tempo real, fazer onboarding ativo nos primeiros 7 dias, e padronizar planos por grau de severidade. **A análise descritiva, aplicada com critério, deixa de descrever o passado e passa a moldar o futuro do cuidado.**
 
 ---
-
-### Apêndice — Ferramentas e Reprodutibilidade
-- **Planilha bruta:** [Google Sheets](https://docs.google.com/spreadsheets/d/1irdnGa0XCR5whZfa0Xb6prbEp4ETkMaMCcD1yVCKyzk/edit?usp=sharing)  
-- **Fórmulas Excel/Sheets utilizadas:**
-  - Desvio padrão amostral: `=DESVPAD.A(intervalo)`
-  - Coeficiente de Variação: `=DESVPAD.A(intervalo)/MÉDIA(intervalo)*100`
-  - Quartis: `=QUARTIL.INC(intervalo; 1)`, `=QUARTIL.INC(intervalo; 3)`
-  - Assimetria: `=DISTORÇÃO(intervalo)`
-- **Geração dos Box Plots:** Python 3.13 + pandas + matplotlib (script disponível no repositório).

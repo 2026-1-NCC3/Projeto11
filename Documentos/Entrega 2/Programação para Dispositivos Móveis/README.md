@@ -2,10 +2,10 @@
 
 Este diretório contém a documentação da Entrega 2. O código-fonte completo do projeto **Maya RPG (App Mobile)** está localizado na raiz do repositório para manter a integridade da estrutura do Android Studio.
 
-## 📁 Acesso ao Código-Fonte
+##  Acesso ao Código-Fonte
 Para visualizar o código-fonte do aplicativo, acesse o link abaixo:
 
-👉 **[Acessar Pasta do App Mobile](../../../App%20Mobile)**
+ **[Acessar Pasta do App Mobile](../../../App%20Mobile)**
 
 ---
 **Instruções para o Professor:**

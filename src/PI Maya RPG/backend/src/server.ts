@@ -38,7 +38,8 @@ app.use((req, res, next) => {
     const timestamp = new Date().toLocaleTimeString('pt-BR');
     
     const userAgent = req.headers['user-agent'] || '';
-    const isMobile = userAgent.includes('Dalvik') || userAgent.includes('Android') || userAgent.includes('iPhone');
+    // Detecção mais robusta: Android, iOS, bibliotecas de rede (okhttp) ou ambiente Dalvik (Android)
+    const isMobile = /Android|iPhone|iPad|iPod|Dalvik|okhttp/i.test(userAgent);
     const device = isMobile ? '📱 [APP]' : '💻 [WEB]';
     
     console.log(`${device} [${timestamp}] ${icon} ${req.method} ${req.originalUrl} - ${status} (${duration}ms)`);

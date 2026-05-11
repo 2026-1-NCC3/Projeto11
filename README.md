@@ -43,7 +43,7 @@ Os arquivos necessários para as avaliações das disciplinas estão separados n
     
 ---
 
-##  Funcionalidades do Sistema
+## Funcionalidades do Sistema
 
 **Módulo Admin (Fisioterapeuta - Web):**
 - **Dashboard e Gestão:** Controle total de pacientes cadastrados e acesso rápido a dados recentes.
@@ -66,19 +66,15 @@ Os arquivos necessários para as avaliações das disciplinas estão separados n
 
 ```
 Projeto11/
-│
 ├── App Mobile/                 # O código do App Android (feito em Java)
 │   └── MayaRPG/                
 │       └── app/build/outputs/apk/debug/app-debug.apk  # O Arquivo Instalável do App
-│
 ├── Documentos/                 # Apresentações, Banners e Arquivos da Faculdade
 │   ├── Entrega 1/              # Entregáveis da primeira fase do projeto
 │   └── Entrega 2/              # Entregáveis da segunda fase do projeto
-│
 ├── src/PI Maya RPG/            # Pasta principal com Web e Backend juntos
 │   ├── app/                    # Telas do Painel Administrativo (feito com Next.js)
 │   └── backend/                # API do projeto (feita com Node.js e Express)
-│
 └── README.md                   # Esse arquivo de leitura aqui
 ```
 

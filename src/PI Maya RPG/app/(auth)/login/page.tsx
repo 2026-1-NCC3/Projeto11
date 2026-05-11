@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/shared/Button';
 import { Input } from '@/components/shared/Input';
-import { Dumbbell } from 'lucide-react';
+import { Logo } from '@/components/shared/Logo';
 
 export default function LoginPage() {
   const { login } = useAuth();
@@ -32,10 +32,7 @@ export default function LoginPage() {
       <div className="w-full max-w-md bg-white rounded-maya shadow-maya p-8 border border-gray-100">
         
         <div className="flex flex-col items-center mb-8 text-center">
-          <div className="w-16 h-16 bg-maya-teal/10 text-maya-teal rounded-full flex items-center justify-center mb-4">
-            <Dumbbell className="w-8 h-8" />
-          </div>
-          <h1 className="font-display text-2xl font-bold text-maya-dark">Maya RPG</h1>
+          <Logo width={200} height={70} className="mb-4" />
           <p className="text-sm text-maya-gray-soft mt-1">
             Sistema de Gestão e Portal do Paciente
           </p>

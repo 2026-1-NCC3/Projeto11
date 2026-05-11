@@ -13,234 +13,106 @@
   <img src="https://github.com/user-attachments/assets/dcca1848-6658-4202-81a6-53a3d6ae1c44" width="450" height="450" alt="logo dev leaders" border="0">
 </p>
 
-## Proposta do Projeto
+## Descrição do Projeto
 
-A [Clínica Maya Yoshiko Yamamoto](https://mayayamamoto.com.br/) é especializada em **Reeducação Postural Global (RPG)**, técnica fisioterapêutica que trata desequilíbrios posturais de forma global e integrada. Atualmente, o acompanhamento dos pacientes ocorre de forma dispersa: por mensagens, registros não padronizados e controles manuais, o que dificulta a rastreabilidade dos prontuários, o planejamento de exercícios domiciliares e o monitoramento da evolução clínica.
+A [Clínica Maya Yoshiko Yamamoto](https://mayayamamoto.com.br/) é especializada em **Reeducação Postural Global (RPG)**. Antes do nosso projeto, o acompanhamento dos pacientes era realizado de forma descentralizada e manual: os prontuários eram físicos e o monitoramento dos exercícios domiciliares era feito via mensagens de WhatsApp. Isso dificultava a rastreabilidade do histórico clínico e impedia uma análise precisa sobre a adesão do paciente ao tratamento.
 
-Para resolver essa necessidade real, o grupo **DevLeaders** desenvolve o **Sistema Maya Yamamoto RPG**: uma solução digital integrada composta por três módulos complementares:
+Para resolver esse gargalo operacional, o nosso grupo (DevLeaders) desenvolveu o **Sistema Maya Yamamoto RPG**, uma solução integrada que centraliza e digitaliza o fluxo da clínica.
 
-- **Aplicativo Mobile (paciente):** permite ao paciente acessar o plano de exercícios prescrito (com vídeos e imagens), registrar a execução das atividades, acompanhar sua própria evolução e receber lembretes de rotina.
+O fluxo modernizado funciona assim: através do Painel Web, a fisioterapeuta cadastra o paciente, abre o prontuário eletrônico e realiza a prescrição de exercícios. Imediatamente, essa rotina é disponibilizada no aplicativo Android do paciente. Após realizar os exercícios em casa, o paciente registra a execução e o nível de dor através de um "Check-in" diário no app. Esses dados são sincronizados com o servidor em nuvem e exibidos em tempo real no dashboard da fisioterapeuta, permitindo decisões clínicas baseadas em dados sem o uso de papel.
 
-- **Módulo Web (profissional/admin):** painel completo para a fisioterapeuta gerenciar pacientes, abrir e consultar prontuários eletrônicos, cadastrar exercícios, realizar prescrições individualizadas e acompanhar indicadores de adesão e evolução.
+O projeto é estruturado em três frentes complementares:
 
-- **Backend (API REST) + Banco de Dados:** camada de serviços responsável pela autenticação, regras de negócio, persistência dos dados e integração entre o aplicativo mobile e o módulo web.
-
-O fluxo principal do sistema segue três etapas:
-
-1. **Cadastro e Avaliação:** a profissional registra o paciente, realiza a avaliação funcional e abre o prontuário eletrônico.
-2. **Prescrição:** a profissional seleciona exercícios do banco de mídia, define frequência e orientações; o paciente acessa tudo pelo aplicativo.
-3. **Acompanhamento:** o paciente registra a execução e indicadores (como nível de dor de 0 a 10); a profissional acompanha a evolução e ajusta a conduta terapêutica.
-
+- **Módulo Web (Admin/Profissional):** Um painel de gestão para a fisioterapeuta administrar prontuários, exercícios e acompanhar o feedback diário reportado via mobile.
+- **Aplicativo Mobile (Paciente):** Um app Android nativo focado em usabilidade, onde o paciente consulta suas prescrições, visualiza orientações e reporta seu progresso através de um sistema de Check-in Offline-First.
+- **Backend (API REST) e Banco de Dados:** Uma API que orquestra a comunicação segura (com JWT) entre o app e o painel web, persistindo os dados em um banco PostgreSQL na nuvem.
 
 ---
 
-##  Objetivos
+## Entregas
 
-- Digitalizar e centralizar a gestão clínica da Clínica Maya Yamamoto RPG, eliminando processos manuais em papel
-- Oferecer aos fisioterapeutas um painel completo para gerenciar pacientes, exercícios, prescrições e prontuários eletrônicos
-- Proporcionar aos pacientes um portal intuitivo para acompanhar seus exercícios prescritos, histórico de sessões e evolução postural
+Os arquivos necessários para as avaliações das disciplinas estão separados nestas pastas:
 
+
+- **Desenvolvimento Mobile & PI:** Código-fonte disponível na pasta `./App Mobile`. 
+  - **Download do APK Instalável:** Você pode encontrar o arquivo para instalar direto no Android no caminho `./App Mobile/MayaRPG/app/build/outputs/apk/debug/app-debug.apk`
+    
+- **Painel Web (Admin):** Sistema web oficial hospedado na nuvem.
+  - **Acessar o Painel:** [https://maya-rpg-web-three.vercel.app](https://maya-rpg-web-three.vercel.app)
+  - **Credenciais de Teste (Fisioterapeuta):** `admin@maya.com` / Senha: `123456`
+    
 ---
 
-## Funcionalidades
+## Funcionalidades do Sistema
 
-**Módulo Admin (Profissional):**
-- Dashboard com visão geral de pacientes, exercícios e atividade recente
-- Cadastro, listagem, edição e exclusão de pacientes
-- Criação e gerenciamento de exercícios com vídeo demonstrativo
-- Registro de avaliações posturais e sessões de prontuário
-- Prescrição de exercícios individualizados por paciente
-- Configurações de conta e perfil profissional
+**Módulo Admin (Fisioterapeuta - Web):**
+- **Dashboard e Gestão:** Controle total de pacientes cadastrados e acesso rápido a dados recentes.
+- **Criação de Usuários:** Cadastro de novos pacientes integrado à geração automática de credenciais para o App.
+- **Biblioteca de Exercícios:** Cadastro de exercícios com descrições, nível de dificuldade, instruções e links para vídeos demonstrativos.
+- **Prescrição Individualizada:** Atribuição de treinos customizados para cada paciente (frequência, repetições, duração).
+- **Monitoramento em Tempo Real:** Visualização do histórico de Check-ins enviados pelo aplicativo.
+- **Sistema de Alertas Clínicos:** Notificação visual vermelha no painel caso o paciente reporte um nível de dor intenso (Nível >= 7).
 
-**Módulo Paciente:**
-- Portal com visão geral do plano de tratamento
-- Listagem de exercícios prescritos com vídeo e instruções
-- Histórico de sessões e registro de check-ins de dor
-- Gerenciamento de perfil pessoal
-
-**Geral:**
-- Autenticação segura com JWT (login separado por perfil: admin e paciente)
-- API REST integrada ao banco de dados PostgreSQL
-- Interface responsiva e animada
+**Módulo Paciente (App Android):**
+- **Autenticação Segura:** Login utilizando tokens JWT.
+- **Visualização de Treinos:** Interface que lista de forma dinâmica os exercícios prescritos, incluindo vídeos e orientações.
+- **Check-in Offline-First:** Formulário diário onde o paciente reporta a conclusão do treino, nível de dor (0 a 10) e observações. Os dados são salvos localmente (SQLite) e, em caso de falta de internet, são sincronizados em *background* assim que a conexão é restaurada.
+- **Notificações Locais (AlarmManager):** Lembretes automáticos agendados localmente no sistema do celular para garantir o engajamento diário aos treinos.
+- **Conformidade LGPD:** Tela de consentimento de privacidade persistida no banco de dados.
 
 ---
 
 ## Estrutura de Pastas
 
 ```
-src/PI Maya RPG/
-│
-├── app/                        # Rotas e páginas (Next.js App Router)
-│   ├── (auth)/                 # Tela de login
-│   ├── (admin)/                # Módulo profissional
-│   │   ├── dashboard/
-│   │   ├── pacientes/
-│   │   ├── exercicios/
-│   │   ├── avaliacoes/
-│   │   └── configuracoes/
-│   └── (paciente)/             # Portal do paciente
-│       ├── inicio/
-│       ├── meus-exercicios/
-│       ├── historico/
-│       └── perfil/
-│
-├── backend/                    # API REST (Express + TypeScript)
-│   ├── src/
-│   │   ├── routes/             # Rotas da API (auth, pacientes, exercícios, etc.)
-│   │   ├── middleware/         # Middlewares de autenticação e validação
-│   │   └── config/             # Configurações do servidor e banco
-│   └── database/               # Scripts SQL (init e seed)
-│
-├── components/
-│   └── shared/                 # Componentes reutilizáveis (MayaAvatar, StatusBadge, etc.)
-│
-├── contexts/                   # AuthContext (gerenciamento de sessão)
-│
-├── lib/                        # Utilitários
-│   ├── api/                    # Cliente HTTP e funções de chamada à API
-│   ├── hooks/                  # React Query hooks
-│   ├── types/                  # Tipos TypeScript globais
-│   └── utils/                  # Funções auxiliares
-│
-├── styles/                     # Estilos globais (Tailwind CSS)
-├── middleware.ts               # Middleware de autenticação Next.js
-└── next.config.js
+Projeto11/
+├── App Mobile/
+│   └── MayaRPG/
+│       └── app/build/outputs/apk/debug/app-debug.apk
+├── Documentos/
+│   ├── Entrega 1/
+│   └── Entrega 2/
+├── src/PI Maya RPG/
+│   ├── app/
+│   └── backend/
+└── README.md  
 ```
 
 ---
 
-## Tecnologias Utilizadas
+## Stack Tecnológico Utilizado
 
-**Frontend:**
-- [Next.js 14](https://nextjs.org/) — Framework React com App Router
-- [TypeScript](https://www.typescriptlang.org/) — Tipagem estática
-- [Tailwind CSS](https://tailwindcss.com/) — Estilização utilitária
-- [React Query (TanStack)](https://tanstack.com/query) — Gerenciamento de estado assíncrono
-- [React Hook Form](https://react-hook-form.com/) + [Zod](https://zod.dev/) — Formulários e validação
-- [Framer Motion](https://www.framer.com/motion/) — Animações
-- [Recharts](https://recharts.org/) — Gráficos e visualização de dados
-- [Radix UI](https://www.radix-ui.com/) — Componentes acessíveis (Dialog, Select, Tabs, etc.)
-- [Axios](https://axios-http.com/) — Cliente HTTP
-- [Lucide React](https://lucide.dev/) — Ícones
+**Mobile (Android):**
+- Desenvolvido nativamente em **Java** usando o Android Studio.
+- Comunicação web feita com a biblioteca **OkHttp**.
+- Salva dados localmente no celular com **SQLite** e `SharedPreferences`.
+- Usa o `AlarmManager` nativo do Android pros lembretes.
 
-**Backend:**
-- [Node.js](https://nodejs.org/) — Ambiente de execução
-- [Express](https://expressjs.com/) — Framework para API REST
-- [TypeScript](https://www.typescriptlang.org/) — Tipagem estática
-- [PostgreSQL](https://www.postgresql.org/) — Banco de dados relacional
-- [bcryptjs](https://github.com/dcodeIO/bcrypt.js) — Hash de senhas
-- [JSON Web Token (JWT)](https://jwt.io/) — Autenticação stateless
-- [Helmet](https://helmetjs.github.io/) + [CORS](https://github.com/expressjs/cors) — Segurança da API
-- [Zod](https://zod.dev/) — Validação de dados no servidor
+**Frontend (Painel Web):**
+- Construído com **Next.js 14** e React.
+- Tipagem usando **TypeScript**.
+- Estilizado rapidamente com **Tailwind CSS**.
+- Tá rodando em produção na nuvem da **Vercel**.
 
----
-
-## Instalação e Execução Local
-
-### Pré-requisitos
-
-- [Node.js](https://nodejs.org/) — versão 18 ou superior
-- [npm](https://www.npmjs.com/) ou [yarn](https://yarnpkg.com/)
-- [PostgreSQL](https://www.postgresql.org/) — para o banco de dados
-
-### Passo a passo
-
-**1. Clone o repositório**
-```bash
-git clone https://github.com/2026-1-NCC3/Projeto11.git
-```
-
-**2. Acesse a pasta do projeto**
-```bash
-cd Projeto11/src/PI\ Maya\ RPG
-```
-
-**3. Instale as dependências do frontend**
-```bash
-npm install
-```
-
-**4. Configure as variáveis de ambiente do frontend**
-```bash
-cp .env.example .env.local
-```
-
-```env
-NEXT_PUBLIC_API_URL=http://localhost:8000
-NEXT_PUBLIC_APP_NAME=Maya Yamamoto RPG
-```
-
-**5. Instale as dependências do backend**
-```bash
-cd backend
-npm install
-```
-
-**6. Configure as variáveis de ambiente do backend**
-```bash
-cp .env.example .env
-```
-
-**7. Inicialize o banco de dados PostgreSQL**
-```bash
-psql -U postgres -f database/init.sql
-psql -U postgres -f database/seed.sql
-```
-
-**8. Execute o backend**
-```bash
-npm run dev
-```
-
-**9. Em outro terminal, execute o frontend**
-```bash
-cd ..
-npm run dev
-```
-
-**10. Acesse no navegador**
-```
-http://localhost:3000
-```
-
-> **Login de teste (sem backend completo):**
-> | E-mail | Senha | Acesso |
-> |---|---|---|
-> | `teste@maya.com` | `123456` | Painel Admin |
-> | `paciente@maya.com` | `123456` | Portal do Paciente |
-
----
-
-##  Banco de Dados
-
-O projeto utiliza **PostgreSQL** como banco de dados relacional. Os scripts de criação e população inicial estão em `backend/database/`:
-
-- `init.sql` — Criação das tabelas (pacientes, exercícios, prescrições, prontuário, check-ins, usuários)
-- `seed.sql` — Dados iniciais para desenvolvimento e testes
-
-As principais entidades são: **Usuários**, **Pacientes**, **Exercícios**, **Prescrições**, **Sessões de Prontuário** e **Check-ins de Dor**.
-
----
-
-## Referências
-
-- [Documentação Next.js](https://nextjs.org/docs)
-- [Documentação Express.js](https://expressjs.com/pt-br/)
-- [Documentação PostgreSQL](https://www.postgresql.org/docs/)
+**Backend (API):**
+- Feito em **Node.js** com **Express**.
+- O banco de dados escolhido foi o **PostgreSQL**, e está hospedado online no **Neon**.
+- A API está no plano gratuito do **Render**.
+- Usamos **JWT** pra fazer o login e verificar as permissões.
 
 ---
 
 ## Licença
 
 <p>
-FECAP - Fundação de Comércio Álvares Penteado © 2025 by
+FECAP - Fundação de Comércio Álvares Penteado © 2026 by
+  
 <a href="https://github.com/LuizZaim/">Luiz Henrique Zaim da Cruz</a>,
+
 <a href="https://github.com/lucio734/">Lúcio Vecchio</a>,
+
 <a href="https://github.com/GustavoDinizFroes/">Gustavo Diniz Froes</a>,
-<a href="https://github.com/Gustavo7122/">Gustavo Felizardo Pires</a>
-is licensed under
-<a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>
-<img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" height="20" width="20" style="margin-left:0.2em;">
-<img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" height="20" width="20" style="margin-left:0.2em;">
-<img src="https://mirrors.creativecommons.org/presskit/icons/sa.svg" height="20" width="20" style="margin-left:0.2em;">
-</p>
+
+<a href="https://github.com/Gustavo7122/">Gustavo Felizardo Pires</a>,
+
+is licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" width="20" height="20" valign="middle"> <img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" width="20" height="20" valign="middle"> <img src="https://mirrors.creativecommons.org/presskit/icons/sa.svg" width="20" height="20" valign="middle"></p>

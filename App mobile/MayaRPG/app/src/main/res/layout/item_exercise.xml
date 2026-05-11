@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:layout_margin="6dp" style="@style/Card.Maya">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal" android:padding="14dp" android:gravity="center_vertical">
+        <!-- Número -->
+        <TextView android:id="@+id/tv_exercise_number"
+            android:layout_width="36dp" android:layout_height="wrap_content"
+            android:text="01" android:textColor="@color/maya_text_light"
+            android:textSize="13sp" android:textStyle="bold"/>
+        <!-- Conteúdo -->
+        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:orientation="vertical">
+            <TextView android:id="@+id/tv_exercise_name"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:textColor="@color/maya_text_primary" android:textSize="14sp"
+                android:textStyle="bold"/>
+            <TextView android:id="@+id/tv_exercise_duration"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:textColor="@color/maya_text_secondary" android:textSize="12sp"
+                android:layout_marginTop="2dp"/>
+            <TextView android:id="@+id/tv_exercise_rest"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:textColor="@color/maya_text_light" android:textSize="11sp"
+                android:layout_marginTop="2dp"/>
+        </LinearLayout>
+        <!-- Seta indicando que é clicável -->
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="›" android:textColor="@color/maya_primary" android:textSize="22sp"/>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

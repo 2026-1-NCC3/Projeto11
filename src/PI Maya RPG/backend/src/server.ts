@@ -28,6 +28,31 @@ app.use(cors({
 }));
 app.use(express.json({ limit: '10mb' }));  // parse do body JSON (limite pra uploads)
 
+// Logger Turbinado — Monitoramento em Tempo Real
+app.use((req, res, next) => {
+  const start = Date.now();
+  res.on('finish', () => {
+    const duration = Date.now() - start;
+    const status = res.statusCode;
+    const icon = status >= 400 ? '🔴' : '🟢';
+    const timestamp = new Date().toLocaleTimeString('pt-BR');
+    
+    const userAgent = req.headers['user-agent'] || '';
+    // Detecção mais robusta: Android, iOS, bibliotecas de rede (okhttp) ou ambiente Dalvik (Android)
+    const isMobile = /Android|iPhone|iPad|iPod|Dalvik|okhttp/i.test(userAgent);
+    const device = isMobile ? '📱 [APP]' : '💻 [WEB]';
+    
+    console.log(`${device} [${timestamp}] ${icon} ${req.method} ${req.originalUrl} - ${status} (${duration}ms)`);
+    
+    // Log especial para logins bem-sucedidos
+    if (req.method === 'POST' && req.originalUrl === '/auth/login' && status === 200) {
+      const email = req.body?.email || 'Usuário desconhecido';
+      console.log(`🔓 ACESSO ${device}: O usuário [${email}] acabou de entrar!`);
+    }
+  });
+  next();
+});
+
 // ── Health check ─────────────────────────────────────────────
 // Rota simples pra verificar se o servidor tá no ar (usada pelo Render)
 app.get('/health', (_req, res) => {

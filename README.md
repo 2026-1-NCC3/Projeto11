@@ -68,7 +68,7 @@ Os arquivos necessários para as avaliações das disciplinas estão separados n
 Projeto11/
 ├── App Mobile/
 │   └── MayaRPG/
-│       └── app/build/outputs/apk/debug/app-debug.apk  # O Arquivo Instalável do App
+│       └── app/build/outputs/apk/debug/app-debug.apk
 ├── Documentos/
 │   ├── Entrega 1/
 │   └── Entrega 2/

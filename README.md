@@ -40,6 +40,8 @@ Os arquivos necessários para as avaliações das disciplinas estão separados n
 - **Painel Web (Admin):** Sistema web oficial hospedado na nuvem.
   - **Acessar o Painel:** [https://maya-rpg-web-three.vercel.app](https://maya-rpg-web-three.vercel.app)
   - **Credenciais de Teste (Fisioterapeuta):** `admin@maya.com` / Senha: `123456`
+
+- **Programação Orientada a Objetos e Estrutura de Dados:** Diagrama de Classes Completo do Projeto disponível em [`Documentos/Entrega 2/Programação Orientada a Objetivos e Estrutura de Dados/README.md`](Documentos/Entrega%202/Programa%C3%A7%C3%A3o%20Orientada%20a%20Objetivos%20e%20Estrutura%20de%20Dados/README.md).
     
 ---
 

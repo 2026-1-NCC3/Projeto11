@@ -213,26 +213,13 @@ export default function ExerciciosPage() {
                   <div
                     className={`aspect-video w-full rounded-lg bg-gradient-to-br ${config.gradient} mb-4 flex items-center justify-center relative overflow-hidden group`}
                   >
-                    {e.midia_url ? (
-                      <>
-                        <img
-                          src={e.midia_url}
-                          alt={e.nome}
-                          className="w-full h-full object-cover"
+                    <div className="flex flex-col items-center gap-2">
+                      <div className={`p-3 rounded-2xl bg-white/60 shadow-sm backdrop-blur-sm`}>
+                        <IconComponent
+                          className={`w-8 h-8 ${config.iconColor}`}
                         />
-                        <div className="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                          <PlayCircle className="w-10 h-10 text-white" />
-                        </div>
-                      </>
-                    ) : (
-                      <div className="flex flex-col items-center gap-2">
-                        <div className={`p-3 rounded-2xl bg-white/60 shadow-sm backdrop-blur-sm`}>
-                          <IconComponent
-                            className={`w-8 h-8 ${config.iconColor}`}
-                          />
-                        </div>
                       </div>
-                    )}
+                    </div>
                     <div className="absolute top-2 left-2 flex flex-wrap gap-1">
                       <DificuldadeBadge dificuldade={e.dificuldade} />
                     </div>

@@ -73,8 +73,9 @@ public class CheckinFragment extends Fragment {
         Spinner spinnerExercise = view.findViewById(R.id.spinner_exercise);
         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(
                 requireContext(),
-                android.R.layout.simple_spinner_dropdown_item,
+                R.layout.spinner_item_custom,
                 exerciseNames);
+        spinnerAdapter.setDropDownViewResource(R.layout.spinner_item_custom);
         spinnerExercise.setAdapter(spinnerAdapter);
 
         SeekBar seekBarPain = view.findViewById(R.id.seekbar_pain);

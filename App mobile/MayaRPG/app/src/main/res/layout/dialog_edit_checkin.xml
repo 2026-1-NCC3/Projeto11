@@ -23,13 +23,16 @@
         android:orientation="horizontal" android:layout_marginBottom="16dp">
         <RadioButton android:id="@+id/rb_complete_edit" android:layout_width="0dp"
             android:layout_height="wrap_content" android:layout_weight="1"
-            android:text="Completo" android:buttonTint="@color/maya_primary"/>
+            android:text="Completo" android:textColor="@color/maya_text_primary"
+            android:buttonTint="@color/maya_primary"/>
         <RadioButton android:id="@+id/rb_partial_edit" android:layout_width="0dp"
             android:layout_height="wrap_content" android:layout_weight="1"
-            android:text="Parcial" android:buttonTint="@color/maya_warning"/>
+            android:text="Parcial" android:textColor="@color/maya_text_primary"
+            android:buttonTint="@color/maya_warning"/>
         <RadioButton android:id="@+id/rb_not_done_edit" android:layout_width="0dp"
             android:layout_height="wrap_content" android:layout_weight="1"
-            android:text="Não fiz" android:buttonTint="@color/maya_secondary"/>
+            android:text="Não fiz" android:textColor="@color/maya_text_primary"
+            android:buttonTint="@color/maya_secondary"/>
     </RadioGroup>
 
     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
@@ -38,5 +41,7 @@
     <EditText android:id="@+id/et_notes_edit"
         android:layout_width="match_parent" android:layout_height="80dp"
         android:inputType="textMultiLine" android:gravity="top"
+        android:textColor="@color/maya_text_primary"
+        android:textColorHint="@color/maya_text_secondary"
         android:hint="Observações..." android:padding="10dp"/>
 </LinearLayout>

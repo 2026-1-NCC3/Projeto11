@@ -15,7 +15,7 @@ router.get('/', async (req: Request, res: Response) => {
     const { tipo, dificuldade, busca } = req.query;
 
     let sql = `
-      SELECT e.*, u.nome AS criado_por_nome
+      SELECT e.*, e.midia_url AS video_url, u.nome AS criado_por_nome
       FROM exercicios e
       LEFT JOIN usuarios u ON u.id = e.criado_por
       WHERE e.ativo = TRUE
@@ -55,7 +55,7 @@ router.get('/', async (req: Request, res: Response) => {
 router.get('/:id', async (req: Request, res: Response) => {
   try {
     const result = await query(`
-      SELECT e.*, u.nome AS criado_por_nome
+      SELECT e.*, e.midia_url AS video_url, u.nome AS criado_por_nome
       FROM exercicios e
       LEFT JOIN usuarios u ON u.id = e.criado_por
       WHERE e.id = $1

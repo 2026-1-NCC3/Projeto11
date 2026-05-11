@@ -28,6 +28,25 @@ app.use(cors({
 }));
 app.use(express.json({ limit: '10mb' }));  // parse do body JSON (limite pra uploads)
 
+// Logger Turbinado — Monitoramento em Tempo Real
+app.use((req, res, next) => {
+  const start = Date.now();
+  res.on('finish', () => {
+    const duration = Date.now() - start;
+    const status = res.statusCode;
+    const icon = status >= 400 ? '🔴' : '🟢';
+    const timestamp = new Date().toLocaleTimeString('pt-BR');
+    
+    console.log(`[${timestamp}] ${icon} ${req.method} ${req.originalUrl} - ${status} (${duration}ms)`);
+    
+    // Log especial para logins bem-sucedidos
+    if (req.method === 'POST' && req.originalUrl === '/auth/login' && status === 200) {
+      console.log(`🔓 ACESSO: Alguém acabou de entrar no sistema!`);
+    }
+  });
+  next();
+});
+
 // ── Health check ─────────────────────────────────────────────
 // Rota simples pra verificar se o servidor tá no ar (usada pelo Render)
 app.get('/health', (_req, res) => {

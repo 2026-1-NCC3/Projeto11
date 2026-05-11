@@ -18,6 +18,7 @@ import {
   X,
 } from 'lucide-react';
 import { useState } from 'react';
+import { Logo } from './Logo';
 
 // Lista de links que aparecem na sidebar
 const adminLinks = [
@@ -62,10 +63,7 @@ export function AdminSidebar() {
       >
         {/* Cabeçalho com nome do sistema e botão de fechar (mobile) */}
         <div className="flex items-center justify-between p-6 border-b border-gray-100">
-          <div>
-            <h1 className="font-display text-xl font-bold text-maya-teal-dark">Maya RPG</h1>
-            <p className="text-xs text-maya-gray-soft mt-0.5">Painel Profissional</p>
-          </div>
+          <Logo width={140} height={45} className="justify-start" />
           <button onClick={() => setMobileOpen(false)} className="lg:hidden p-1" aria-label="Fechar menu">
             <X className="h-5 w-5 text-maya-gray-soft" />
           </button>

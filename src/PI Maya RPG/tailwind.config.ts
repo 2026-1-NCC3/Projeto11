@@ -8,11 +8,11 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        'maya-teal': '#7FBBD0',
-        'maya-teal-dark': '#165979',
-        'maya-coral': '#B16850',
-        'maya-beige': '#FDF1E0',
-        'maya-brown': '#8A4E3B',
+        'maya-teal': '#36BDD1',
+        'maya-teal-dark': '#005072',
+        'maya-coral': '#F27A63',
+        'maya-beige': '#E6D5B8',
+        'maya-brown': '#7B4F2A',
         'maya-off-white': '#FFFFFF',
         'maya-dark': '#333333',
         'maya-gray-soft': '#949494',

@@ -11,13 +11,13 @@
 :root {
   /* Paleta de cores da clínica Maya */
   /* Cores principais — usadas nos botões, links e destaques */
-  --color-primary-teal: #7FBBD0;      /* azul-esverdeado: cor principal da marca */
-  --color-primary-coral: #B16850;      /* coral: cor de alerta e ações destrutivas */
+  --color-primary-teal: #36BDD1;      /* azul-esverdeado: cor principal da marca */
+  --color-primary-coral: #F27A63;      /* coral: cor de destaque secundária */
 
   /* Cores de apoio — fundos, textos secundários */
-  --color-secondary-beige: #FDF1E0;    /* bege claro: fundo de cards e destaques suaves */
-  --color-secondary-brown: #8A4E3B;    /* marrom: textos sobre fundo bege */
-  --color-secondary-teal-dark: #165979; /* azul escuro: títulos e textos de destaque */
+  --color-secondary-beige: #E6D5B8;    /* bege claro: fundo de cards e destaques suaves */
+  --color-secondary-brown: #7B4F2A;    /* marrom: textos sobre fundo bege */
+  --color-secondary-teal-dark: #005072; /* azul escuro: títulos e textos de destaque */
 
   /* Neutros — base do layout */
   --color-white: #FFFFFF;

@@ -9,6 +9,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { cn } from '@/lib/utils';
 import { Home, Dumbbell, History, UserCircle, LogOut, Menu, X } from 'lucide-react';
 import { useState } from 'react';
+import { Logo } from './Logo';
 
 // Links do portal do paciente
 const pacienteLinks = [
@@ -52,8 +53,7 @@ export function PacienteSidebar() {
       <aside className="hidden lg:flex fixed inset-y-0 left-0 w-64 bg-white border-r border-gray-100 flex-col">
         {/* Cabeçalho */}
         <div className="p-6 border-b border-gray-100">
-          <h1 className="font-display text-xl font-bold text-maya-teal-dark">Maya RPG</h1>
-          <p className="text-xs text-maya-gray-soft mt-0.5">Portal do Paciente</p>
+          <Logo width={140} height={45} className="justify-start" />
         </div>
 
         {/* Links de navegação */}

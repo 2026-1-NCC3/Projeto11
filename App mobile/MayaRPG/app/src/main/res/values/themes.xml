@@ -9,6 +9,8 @@
         <item name="colorSecondary">@color/maya_secondary</item>
         <item name="android:windowBackground">@color/maya_background</item>
         <item name="android:statusBarColor">@color/maya_dark</item>
+        <item name="android:editTextColor">@color/maya_text_primary</item>
+        <item name="android:textColor">@color/maya_text_primary</item>
     </style>
 
     <!-- Tema da Splash sem action bar -->

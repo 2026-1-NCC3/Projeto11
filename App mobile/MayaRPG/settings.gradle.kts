@@ -11,10 +11,11 @@ plugins {
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
     repositories {
+        maven { url = uri("https://pkg.fecap.br/repository/maven-public/") }
         google()
         mavenCentral()
         maven {
-            url = uri("http://jitpack.io")
+            url = uri("https://jitpack.io")
             isAllowInsecureProtocol = true
         }
     }

@@ -104,20 +104,67 @@ Projeto11/
 
 ---
 
-## Configuração de Instalação e Desenvolvimento
+## 🛠️ Instalação
 
-**Frontend e Backend (Web/API):**
-1. Certifique-se de ter o **Node.js** instalado.
-2. Navegue até o diretório do backend (`src/PI Maya RPG/backend`) e do frontend (`src/PI Maya RPG`).
-3. Execute `npm install` em ambos para instalar as dependências.
-4. Utilize `npm start` (backend) e `npm run dev` (frontend) para iniciar os serviços localmente.
+### Android (Aplicativo Móvel):
+Para utilizar o aplicativo em seu smartphone Android, basta baixar o arquivo executável (APK):
+1. Acesse a pasta: `Documentos/Entrega 2/Projeto Interdisciplinar Aplicativo Móvel/`.
+2. Baixe o arquivo **app-debug.apk** para o seu celular.
+3. No celular, abra o arquivo e siga as instruções de instalação (autorize a instalação de "Fontes Desconhecidas" se solicitado).
 
-**Mobile (Android):**
-1. Abra o projeto na pasta `App Mobile/MayaRPG` utilizando o **Android Studio**.
-2. Aguarde a sincronização do **Gradle**.
-3. Compile e execute o aplicativo em um emulador ou dispositivo físico Android.
+### Painel Web (Administrador):
+Não é necessária nenhuma instalação para acessar o painel administrativo:
+1. Certifique-se de estar conectado à internet.
+2. Acesse o sistema através do link: [https://maya-rpg-web-three.vercel.app](https://maya-rpg-web-three.vercel.app)
+3. Utilize as credenciais de acesso disponíveis na seção [Entregas](#entregas).
 
 ---
+
+## 💻 Configuração para Desenvolvimento
+
+Caso deseje baixar o código-fonte e rodar o projeto em um ambiente de desenvolvimento local, siga as instruções abaixo:
+
+### 1. Mobile (Android Studio):
+Para abrir e editar o aplicativo móvel, você precisará da ferramenta oficial do Google.
+*   **Ferramenta Necessária:** [Android Studio](https://developer.android.com/studio)
+*   **Passo a passo:**
+    1. Abra o Android Studio e selecione **Open**.
+    2. Navegue até a pasta `App Mobile/MayaRPG` e clique em OK.
+    3. Aguarde o download das dependências (Gradle) terminar.
+    4. Conecte um celular Android via USB ou use um Emulador e clique no ícone de **Play (Run)**.
+
+### 2. Backend (API):
+O servidor que processa os dados da clínica.
+*   **Ferramenta Necessária:** [Node.js](https://nodejs.org/)
+*   **Comandos de execução:**
+```bash
+# Entre na pasta do servidor
+cd "src/PI Maya RPG/backend"
+
+# Instale os componentes necessários
+npm install
+
+# Inicie o servidor
+npm start
+```
+
+### 3. Painel Web (Frontend):
+O site onde a fisioterapeuta gerencia os pacientes.
+*   **Ferramenta Necessária:** [Node.js](https://nodejs.org/)
+*   **Comandos de execução:**
+```bash
+# Entre na pasta do projeto web
+cd "src/PI Maya RPG"
+
+# Instale os componentes necessários
+npm install
+
+# Inicie o painel em modo de teste
+npm run dev
+```
+
+---
+
 
 ## Licença
 

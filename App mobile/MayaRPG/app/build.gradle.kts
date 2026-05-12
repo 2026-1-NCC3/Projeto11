@@ -4,12 +4,12 @@ plugins {
 
 android {
     namespace = "com.maya.rpg"
-    compileSdk = 34
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.maya.rpg"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
     }

@@ -74,7 +74,7 @@ Projeto11/
 ├── Documentos/
 │   ├── Entrega 1/
 │   └── Entrega 2/
-├── src/PI Maya RPG/
+├── src/Maya RPG Web/
 │   ├── app/
 │   └── backend/
 └── README.md  
@@ -139,7 +139,7 @@ O servidor que processa os dados da clínica.
 *   **Comandos de execução:**
 ```bash
 # Entre na pasta do servidor
-cd "src/PI Maya RPG/backend"
+cd "src/Maya RPG Web/backend"
 
 # Instale os componentes necessários
 npm install
@@ -154,7 +154,7 @@ O site onde a fisioterapeuta gerencia os pacientes.
 *   **Comandos de execução:**
 ```bash
 # Entre na pasta do projeto web
-cd "src/PI Maya RPG"
+cd "src/Maya RPG Web"
 
 # Instale os componentes necessários
 npm install

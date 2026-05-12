@@ -104,6 +104,21 @@ Projeto11/
 
 ---
 
+## Configuração de Instalação e Desenvolvimento
+
+**Frontend e Backend (Web/API):**
+1. Certifique-se de ter o **Node.js** instalado.
+2. Navegue até o diretório do backend (`src/PI Maya RPG/backend`) e do frontend (`src/PI Maya RPG`).
+3. Execute `npm install` em ambos para instalar as dependências.
+4. Utilize `npm start` (backend) e `npm run dev` (frontend) para iniciar os serviços localmente.
+
+**Mobile (Android):**
+1. Abra o projeto na pasta `App Mobile/MayaRPG` utilizando o **Android Studio**.
+2. Aguarde a sincronização do **Gradle**.
+3. Compile e execute o aplicativo em um emulador ou dispositivo físico Android.
+
+---
+
 ## Licença
 
 <p>
@@ -118,3 +133,4 @@ FECAP - Fundação de Comércio Álvares Penteado © 2026 by
 <a href="https://github.com/Gustavo7122/">Gustavo Felizardo Pires</a>,
 
 is licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" width="20" height="20" valign="middle"> <img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" width="20" height="20" valign="middle"> <img src="https://mirrors.creativecommons.org/presskit/icons/sa.svg" width="20" height="20" valign="middle"></p>
+npx antigravity-awesome-skills --antigravity

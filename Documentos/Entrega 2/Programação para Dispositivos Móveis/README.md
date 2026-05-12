@@ -13,5 +13,7 @@ Para visualizar o código-fonte do aplicativo, você pode acessar as seguintes l
 - O projeto foi desenvolvido em **Java** utilizando o **Android Studio**.
 - Todas as dependências e o Gradle estão configurados na pasta vinculada acima.
 - O APK final para testes rápidos também pode ser encontrado na raiz do repositório ou dentro da pasta `App Mobile/MayaRPG/app/build/outputs/apk/debug/`.
-- Login para teste no App: rodrigodarosa123@gmail.com
+
+**Credenciais para Teste Mobile**
+- Login: rodrigodarosa123@gmail.com
 - Senha: 123456

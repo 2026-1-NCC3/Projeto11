@@ -64,6 +64,7 @@ public class CheckinFragment extends Fragment {
     private void setupUI(View view) {
         // Prepara nomes dos exercícios para o spinner
         List<String> names = new ArrayList<>();
+        names.add("Selecione o exercício...");
         names.add("Sessão completa (todos os exercícios)");
         for (int i = 0; i < exerciseList.size(); i++) {
             names.add(String.format("%02d. %s", i + 1, exerciseList.get(i).getName()));
@@ -103,6 +104,12 @@ public class CheckinFragment extends Fragment {
 
         Button btnSave = view.findViewById(R.id.btn_save_checkin);
         btnSave.setOnClickListener(v -> {
+            int exIndex = spinnerExercise.getSelectedItemPosition();
+            if (exIndex == 0) {
+                Toast.makeText(requireContext(), "Por favor, selecione um exercício.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             int checkedId = rgCompletion.getCheckedRadioButtonId();
             int completion = Checkin.COMPLETED;
             if (checkedId == R.id.rb_partial) completion = Checkin.PARTIAL;
@@ -110,7 +117,6 @@ public class CheckinFragment extends Fragment {
 
             int painLevel = seekBarPain.getProgress();
             String notes = etNotes.getText().toString().trim();
-            int exIndex = spinnerExercise.getSelectedItemPosition();
 
             String pacienteId = session.getPacienteId();
             if (pacienteId == null || pacienteId.isEmpty()) {
@@ -120,12 +126,13 @@ public class CheckinFragment extends Fragment {
             // Determinar prescricaoId do exercício selecionado
             String prescricaoId = null;
             String exerciseName = "Sessão completa";
-            if (exIndex > 0 && exIndex <= exerciseList.size()) {
-                Exercise selectedEx = exerciseList.get(exIndex - 1);
+            
+            if (exIndex > 1) {
+                Exercise selectedEx = exerciseList.get(exIndex - 2);
                 prescricaoId = selectedEx.getId(); // ID da prescrição
                 exerciseName = selectedEx.getName();
             } else if (!exerciseList.isEmpty()) {
-                // "Sessão completa" → usa primeira prescrição como referência
+                // "Sessão completa" (index 1) → usa primeira prescrição como referência
                 prescricaoId = exerciseList.get(0).getId();
             }
 

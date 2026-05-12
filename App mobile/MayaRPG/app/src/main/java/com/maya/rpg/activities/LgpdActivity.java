@@ -22,10 +22,18 @@ public class LgpdActivity extends AppCompatActivity {
         Button btnAccept  = findViewById(R.id.btn_accept);
         Button btnDecline = findViewById(R.id.btn_decline);
 
+        boolean fromRegister = getIntent().getBooleanExtra("FROM_REGISTER", false);
+
         btnAccept.setOnClickListener(v -> {
-            db.acceptLgpd(session.getUserId());
-            session.setLgpdAccepted(true);
-            startActivity(new Intent(this, MainActivity.class));
+            if (fromRegister) {
+                Intent intent = new Intent(this, RegisterActivity.class);
+                intent.putExtra("LGPD_ACCEPTED", true);
+                startActivity(intent);
+            } else {
+                db.acceptLgpd(session.getUserId());
+                session.setLgpdAccepted(true);
+                startActivity(new Intent(this, MainActivity.class));
+            }
             finish();
         });
 

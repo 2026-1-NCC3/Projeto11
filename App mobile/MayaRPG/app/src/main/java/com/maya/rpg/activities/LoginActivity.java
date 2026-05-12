@@ -50,8 +50,11 @@ public class LoginActivity extends AppCompatActivity {
         tvForgotPassword.setOnClickListener(v ->
                 startActivity(new Intent(this, ForgotPasswordActivity.class)));
 
-        tvRegister.setOnClickListener(v ->
-                startActivity(new Intent(this, RegisterActivity.class)));
+        tvRegister.setOnClickListener(v -> {
+            Intent intent = new Intent(this, LgpdActivity.class);
+            intent.putExtra("FROM_REGISTER", true);
+            startActivity(intent);
+        });
     }
 
     private void attemptLogin() {

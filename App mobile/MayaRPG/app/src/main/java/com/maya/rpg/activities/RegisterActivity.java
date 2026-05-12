@@ -84,12 +84,18 @@ public class RegisterActivity extends AppCompatActivity {
                     progressBar.setVisibility(View.GONE);
                     btnRegister.setEnabled(true);
 
+                    // Marca LGPD como aceito se veio do fluxo de pré-cadastro
+                    if (getIntent().getBooleanExtra("LGPD_ACCEPTED", false)) {
+                        dbHelper.acceptLgpd(apiUser.getId());
+                        apiUser.setLgpdAccepted(true);
+                    }
+
                     sessionManager.saveSession(apiUser);
                     Toast.makeText(RegisterActivity.this,
                             "Conta criada com sucesso!", Toast.LENGTH_SHORT).show();
 
-                    // Vai direto para LGPD (primeiro acesso)
-                    Intent intent = new Intent(RegisterActivity.this, LgpdActivity.class);
+                    // Agora vai para a MainActivity (ou Login) pois LGPD já foi aceito ou será exigido no Login
+                    Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                     finish();
@@ -119,6 +125,13 @@ public class RegisterActivity extends AppCompatActivity {
                 return;
             }
             dbHelper.createUser(name, email, HashUtils.sha256(password));
+            
+            // Marca LGPD local se veio do fluxo
+            if (getIntent().getBooleanExtra("LGPD_ACCEPTED", false)) {
+                User newUser = dbHelper.getUserByEmail(email);
+                if (newUser != null) dbHelper.acceptLgpd(newUser.getId());
+            }
+
             runOnUiThread(() -> {
                 progressBar.setVisibility(View.GONE);
                 btnRegister.setEnabled(true);

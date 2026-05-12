@@ -1,0 +1,44 @@
+/* 
+  Estilos globais da aplicação Maya RPG.
+  Aqui a gente define as cores da identidade visual e os estilos base
+  que vão valer pra todas as páginas.
+*/
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Paleta de cores da clínica Maya */
+  /* Cores principais — usadas nos botões, links e destaques */
+  --color-primary-teal: #36BDD1;      /* azul-esverdeado: cor principal da marca */
+  --color-primary-coral: #F27A63;      /* coral: cor de destaque secundária */
+
+  /* Cores de apoio — fundos, textos secundários */
+  --color-secondary-beige: #E6D5B8;    /* bege claro: fundo de cards e destaques suaves */
+  --color-secondary-brown: #7B4F2A;    /* marrom: textos sobre fundo bege */
+  --color-secondary-teal-dark: #005072; /* azul escuro: títulos e textos de destaque */
+
+  /* Neutros — base do layout */
+  --color-white: #FFFFFF;
+  --color-off-white: #FFFFFF;          /* fundo geral do site */
+  --color-dark: #333333;               /* texto principal */
+  --color-gray-soft: #949494;          /* textos secundários e placeholders */
+}
+
+/* Estilos base que se aplicam em todo lugar */
+@layer base {
+  html {
+    @apply antialiased; /* suaviza as fontes no navegador */
+  }
+  body {
+    @apply bg-maya-off-white text-maya-dark font-roboto;
+  }
+}
+
+/* Classe utilitária pra manter um padrão de foco acessível nos elementos interativos */
+@layer utilities {
+  .focus-maya {
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-maya-teal focus-visible:ring-offset-2;
+  }
+}

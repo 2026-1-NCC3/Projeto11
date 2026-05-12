@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:orientation="vertical" android:padding="20dp">
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:text="NÍVEL DE DOR" android:textColor="@color/maya_text_secondary"
+        android:textSize="11sp" android:textStyle="bold" android:layout_marginBottom="6dp"/>
+    <SeekBar android:id="@+id/seekbar_pain_edit"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:max="10" android:thumbTint="@color/maya_primary"
+        android:progressTint="@color/maya_primary"/>
+    <TextView android:id="@+id/tv_pain_value_edit"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:text="0" android:textColor="@color/maya_primary"
+        android:textSize="14sp" android:layout_marginTop="4dp" android:layout_marginBottom="16dp"/>
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:text="CONCLUSÃO" android:textColor="@color/maya_text_secondary"
+        android:textSize="11sp" android:textStyle="bold" android:layout_marginBottom="6dp"/>
+    <RadioGroup android:id="@+id/rg_completion_edit"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal" android:layout_marginBottom="16dp">
+        <RadioButton android:id="@+id/rb_complete_edit" android:layout_width="0dp"
+            android:layout_height="wrap_content" android:layout_weight="1"
+            android:text="Completo" android:textColor="@color/maya_text_primary"
+            android:buttonTint="@color/maya_primary"/>
+        <RadioButton android:id="@+id/rb_partial_edit" android:layout_width="0dp"
+            android:layout_height="wrap_content" android:layout_weight="1"
+            android:text="Parcial" android:textColor="@color/maya_text_primary"
+            android:buttonTint="@color/maya_warning"/>
+        <RadioButton android:id="@+id/rb_not_done_edit" android:layout_width="0dp"
+            android:layout_height="wrap_content" android:layout_weight="1"
+            android:text="Não fiz" android:textColor="@color/maya_text_primary"
+            android:buttonTint="@color/maya_secondary"/>
+    </RadioGroup>
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:text="OBSERVAÇÕES" android:textColor="@color/maya_text_secondary"
+        android:textSize="11sp" android:textStyle="bold" android:layout_marginBottom="6dp"/>
+    <EditText android:id="@+id/et_notes_edit"
+        android:layout_width="match_parent" android:layout_height="80dp"
+        android:inputType="textMultiLine" android:gravity="top"
+        android:textColor="@color/maya_text_primary"
+        android:textColorHint="@color/maya_text_secondary"
+        android:hint="Observações..." android:padding="10dp"/>
+</LinearLayout>

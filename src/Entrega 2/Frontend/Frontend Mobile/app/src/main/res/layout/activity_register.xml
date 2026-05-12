@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@color/maya_dark" android:fillViewport="true">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical" android:padding="24dp" android:paddingTop="56dp">
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="maya" android:textColor="@color/maya_primary"
+            android:textSize="32sp" android:textStyle="bold" android:layout_marginBottom="32dp"/>
+
+        <androidx.cardview.widget.CardView android:layout_width="match_parent"
+            android:layout_height="wrap_content" app:cardBackgroundColor="@color/maya_background"
+            app:cardCornerRadius="20dp" xmlns:app="http://schemas.android.com/apk/res-auto">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:padding="24dp">
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Criar conta" android:textColor="@color/maya_text_primary"
+                    android:textSize="22sp" android:textStyle="bold" android:layout_marginBottom="20dp"/>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:hint="Nome completo"
+                    android:textColorHint="@color/maya_text_secondary"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_marginBottom="12dp">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_name" android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:inputType="textPersonName"
+                        android:textColor="@color/maya_text_primary"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:hint="E-mail"
+                    android:textColorHint="@color/maya_text_secondary"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_marginBottom="12dp">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_email" android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:inputType="textEmailAddress"
+                        android:textColor="@color/maya_text_primary"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:hint="Senha (mínimo 6 caracteres)"
+                    android:textColorHint="@color/maya_text_secondary"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    app:passwordToggleEnabled="true" android:layout_marginBottom="12dp">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_password" android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:inputType="textPassword"
+                        android:textColor="@color/maya_text_primary"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:hint="Confirmar senha"
+                    android:textColorHint="@color/maya_text_secondary"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    app:passwordToggleEnabled="true" android:layout_marginBottom="20dp">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_confirm_password" android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:inputType="textPassword"
+                        android:textColor="@color/maya_text_primary"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Button android:id="@+id/btn_register"
+                    android:layout_width="match_parent" android:layout_height="52dp"
+                    android:text="Criar conta" style="@style/Button.Maya.Primary"/>
+                <ProgressBar android:id="@+id/progress_bar"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:layout_gravity="center" android:layout_marginTop="8dp"
+                    android:visibility="gone" android:indeterminateTint="@color/maya_primary"/>
+                <TextView android:id="@+id/tv_login"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="Já tem conta? Fazer login"
+                    android:textColor="@color/maya_text_secondary" android:gravity="center"
+                    android:padding="16dp" android:textSize="14sp"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+</ScrollView>

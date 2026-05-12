@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@color/maya_background">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:background="@color/maya_dark" android:padding="20dp" android:paddingTop="48dp">
+            <TextView android:id="@+id/tv_exercise_name"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:textColor="@color/white" android:textSize="20sp" android:textStyle="bold"/>
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:padding="20dp">
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="DURAÇÃO" android:textColor="@color/maya_text_secondary"
+                android:textSize="11sp" android:textStyle="bold" android:letterSpacing="0.08"
+                android:layout_marginBottom="4dp"/>
+            <TextView android:id="@+id/tv_exercise_duration"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:textColor="@color/maya_text_primary" android:textSize="16sp"
+                android:textStyle="bold" android:layout_marginBottom="16dp"/>
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="DESCANSO" android:textColor="@color/maya_text_secondary"
+                android:textSize="11sp" android:textStyle="bold" android:letterSpacing="0.08"
+                android:layout_marginBottom="4dp"/>
+            <TextView android:id="@+id/tv_exercise_rest"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:textColor="@color/maya_text_primary" android:textSize="15sp"
+                android:layout_marginBottom="16dp"/>
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="DESCRIÇÃO" android:textColor="@color/maya_text_secondary"
+                android:textSize="11sp" android:textStyle="bold" android:letterSpacing="0.08"
+                android:layout_marginBottom="4dp"/>
+            <TextView android:id="@+id/tv_exercise_description"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:textColor="@color/maya_text_secondary" android:textSize="14sp"
+                android:lineSpacingMultiplier="1.5" android:layout_marginBottom="24dp"/>
+
+            <Button android:id="@+id/btn_watch_video"
+                android:layout_width="match_parent" android:layout_height="52dp"
+                android:text="Assistir vídeo demonstrativo"
+                style="@style/Button.Maya.Primary" android:layout_marginBottom="12dp"/>
+
+            <Button android:id="@+id/btn_back"
+                android:layout_width="match_parent" android:layout_height="52dp"
+                android:text="Voltar" style="@style/Button.Maya.Outline"/>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

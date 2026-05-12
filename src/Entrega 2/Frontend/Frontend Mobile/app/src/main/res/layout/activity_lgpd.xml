@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@color/maya_background" android:fillViewport="true">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical" android:padding="24dp" android:paddingTop="48dp">
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="maya" android:textColor="@color/maya_primary"
+            android:textSize="32sp" android:textStyle="bold" android:layout_marginBottom="24dp"/>
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Termos de Uso e Privacidade"
+            android:textColor="@color/maya_text_primary" android:textSize="20sp"
+            android:textStyle="bold" android:layout_marginBottom="16dp"/>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="Aviso LGPD — Lei 13.709/2018\n\nAo usar este aplicativo, você concorda com o tratamento dos seus dados pessoais de saúde para fins de acompanhamento fisioterapêutico.\n\nQuais dados coletamos:\nNome, e-mail, histórico de exercícios, registros de dor e notas clínicas.\n\nFinalidade:\nGestão do plano de reabilitação e comunicação com seu fisioterapeuta.\n\nSeus direitos:\nAcesso, correção, exclusão e portabilidade dos seus dados a qualquer momento. Contato: privacidade@mayayamamoto.com.br\n\nArmazenamento:\nDados são armazenados com segurança e nunca compartilhados sem seu consentimento, exceto quando exigido por lei."
+            android:textColor="@color/maya_text_secondary" android:textSize="14sp"
+            android:lineSpacingMultiplier="1.5" android:layout_marginBottom="32dp"/>
+
+        <Button android:id="@+id/btn_accept"
+            android:layout_width="match_parent" android:layout_height="52dp"
+            android:text="Aceitar e continuar" style="@style/Button.Maya.Primary"
+            android:layout_marginBottom="12dp"/>
+        <Button android:id="@+id/btn_decline"
+            android:layout_width="match_parent" android:layout_height="52dp"
+            android:text="Recusar" style="@style/Button.Maya.Outline"/>
+    </LinearLayout>
+</ScrollView>

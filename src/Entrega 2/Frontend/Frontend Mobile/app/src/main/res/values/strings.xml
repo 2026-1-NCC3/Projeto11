@@ -1,0 +1,23 @@
+
+<!-- ARQUIVO: res/values/strings.xml -->
+<resources>
+    <string name="app_name">Maya RPG</string>
+    <string name="login_title">Acesso do Paciente</string>
+    <string name="email_hint">E-mail</string>
+    <string name="password_hint">Senha</string>
+    <string name="btn_login">Entrar</string>
+    <string name="btn_register">Criar conta</string>
+    <string name="btn_forgot">Esqueci minha senha</string>
+    <string name="nav_home">Início</string>
+    <string name="nav_plan">Plano</string>
+    <string name="nav_checkin">Check-in</string>
+    <string name="nav_history">Histórico</string>
+    <string name="demo_mode_warning">MODO DEMONSTRAÇÃO — Sem conexão com o servidor</string>
+    <string name="lgpd_title">Termos de Uso e Privacidade</string>
+    <string name="lgpd_accept">Aceitar e continuar</string>
+    <string name="lgpd_decline">Recusar</string>
+    <string name="watch_video">Assistir vídeo demonstrativo</string>
+    <string name="save_checkin">Salvar check-in</string>
+    <string name="edit">Editar</string>
+    <string name="delete">Excluir</string>
+</resources>

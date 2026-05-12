@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/maya_background">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Topbar -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:background="@color/maya_dark" android:padding="16dp" android:paddingTop="48dp">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="maya" android:textColor="@color/maya_primary"
+                android:textSize="28sp" android:textStyle="bold"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text=" yamamoto · rpg" android:textColor="#80FFFFFF"
+                android:textSize="11sp" android:layout_gravity="bottom" android:layout_marginBottom="4dp"/>
+        </LinearLayout>
+
+        <!-- Banner demo -->
+        <TextView android:id="@+id/tv_demo_banner_home"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="MODO DEMONSTRAÇÃO" android:textColor="@color/maya_dark"
+            android:textStyle="bold" android:gravity="center" android:padding="8dp"
+            android:background="@color/maya_demo_banner" android:visibility="gone"/>
+
+        <!-- Saudação -->
+        <TextView android:id="@+id/tv_greeting"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Olá, Paciente" android:textColor="@color/maya_text_primary"
+            android:textSize="22sp" android:textStyle="bold"
+            android:layout_marginStart="16dp" android:layout_marginTop="16dp"/>
+
+        <!-- Card de progresso semanal -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_margin="16dp" app:cardBackgroundColor="@color/maya_dark"
+            app:cardCornerRadius="14dp">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:padding="16dp">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="PROGRESSO DA SEMANA" android:textColor="#80FFFFFF"
+                    android:textSize="11sp" android:letterSpacing="0.08"/>
+                <TextView android:id="@+id/tv_weekly_progress"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="0 / 3 sessões" android:textColor="@color/white"
+                    android:textSize="22sp" android:textStyle="bold" android:layout_marginTop="4dp"/>
+                <ProgressBar android:id="@+id/pb_weekly"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent" android:layout_height="8dp"
+                    android:layout_marginTop="8dp" android:max="3"
+                    android:progressTint="@color/maya_primary"
+                    android:progressBackgroundTint="#33FFFFFF"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Plano ativo -->
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="PLANO ATIVO" android:textColor="@color/maya_text_secondary"
+            android:textSize="11sp" android:textStyle="bold" android:letterSpacing="0.1"
+            android:layout_marginStart="16dp" android:layout_marginBottom="6dp"/>
+        <androidx.cardview.widget.CardView android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="16dp" style="@style/Card.Maya">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:padding="16dp">
+                <TextView android:id="@+id/tv_plan_name"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Fortalecimento Joelho" android:textColor="@color/maya_text_primary"
+                    android:textSize="16sp" android:textStyle="bold"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="3x por semana · 10 exercícios" android:textColor="@color/maya_text_secondary"
+                    android:textSize="13sp" android:layout_marginTop="2dp"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+        <!-- Botão de sair da conta -->
+        <Button
+            android:id="@+id/btn_logout"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="Sair da conta"
+            android:layout_margin="16dp"
+            style="@style/Button.Maya.Outline"/>
+    </LinearLayout>
+</ScrollView>
